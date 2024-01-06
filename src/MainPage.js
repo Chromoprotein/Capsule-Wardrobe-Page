@@ -64,7 +64,7 @@ export default function MainPage() {
           Reset Filters
         </button>
 
-        <select name="color" onChange={handleFiltersChange}>
+        <select value={filters.color} name="color" onChange={handleFiltersChange}>
           <option value="" disabled selected>
             Color
           </option>
@@ -75,7 +75,7 @@ export default function MainPage() {
           ))}
         </select>
 
-        <select name="brand" onChange={handleFiltersChange}>
+        <select value={filters.brand} name="brand" onChange={handleFiltersChange}>
           <option value="" disabled selected>
             Brand
           </option>
@@ -86,7 +86,7 @@ export default function MainPage() {
           ))}
         </select>
 
-        <select name="category" onChange={handleFiltersChange}>
+        <select value={filters.category} name="category" onChange={handleFiltersChange}>
           <option value="" disabled selected>
             Category
           </option>
@@ -97,7 +97,7 @@ export default function MainPage() {
           ))}
         </select>
 
-        <select name="season" onChange={handleFiltersChange}>
+        <select value={filters.season} name="season" onChange={handleFiltersChange}>
           <option value="" disabled selected>
             Season
           </option>
@@ -108,20 +108,24 @@ export default function MainPage() {
         </select>
       </div>
 
-      {paginatedData}
+      <div className="clothingCardContainer">
+        {paginatedData}
+      </div>
 
-      <button onClick={goToPreviousPage} disabled={currentPage === 1}>
-        Previous
-      </button>
-      <span>
-        Page {currentPage} of {totalPages}
-      </span>
-      <button
-        onClick={goToNextPage}
-        disabled={currentPage * itemsPerPage >= filteredClothes.length}
-      >
-        Next
-      </button>
+      <div>
+        <button onClick={goToPreviousPage} disabled={currentPage === 1}>
+          Previous
+        </button>
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          onClick={goToNextPage}
+          disabled={currentPage * itemsPerPage >= filteredClothes.length}
+        >
+          Next
+        </button>
+      </div>
     </>
   );
 }
