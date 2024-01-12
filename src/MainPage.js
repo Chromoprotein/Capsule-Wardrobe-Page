@@ -1,45 +1,71 @@
-import clothesArray from "./clothesArray";
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
 import colors from "./ColorsArray";
 import brands from "./brandsArray";
 import category from "./categoryArray";
 import ClothingCard from "./ClothingCard";
+import { ClothingContext } from "./clothingContext";
+import { Outlet } from "react-router-dom";
 
 export default function MainPage() {
+  
+  const { clothes, setClothes } = useContext(ClothingContext);
+
   const [filters, setFilters] = useState({
     category: "",
-    color: "",
+    color: [],
     season: "",
     brand: "",
   });
+
+  // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const [paginatedData, setPaginatedData] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
   const itemsPerPage = 5;
 
+  //State for add new clothing form
+  const [newClothing, setNewClothing] = useState({
+    category: "",
+    brand: "",
+    color: "",
+    size: "",
+    season: "",
+    cost: 0})
+
+  //*****FILTERS*****
+  //Event handler for filters
   const handleFiltersChange = (event) => {
-    setFilters({ ...filters, [event.target.name]: event.target.value });
+    //Options is for multiple colors
+    const { name, value, options } = event.target;
+    //Handle multiple color choices
+    if (name === "color") {
+      const selectedColors = Array.from(options) //Creates an array
+        .filter(option => option.selected) //Checks that color is selected
+        .map(option => option.value); //Makes an array of color values
+      setFilters({ ...filters, [name]: selectedColors });
+    //Handle other filters
+    } else {
+      setFilters({ ...filters, [name]: value });
+    }
     setCurrentPage(1);
+
   };
 
   const resetFilters = () => {
-    setFilters({ category: "", color: "", season: "", brand: "" });
+    setFilters({ category: "", color: [], season: "", brand: "" });
     setCurrentPage(1);
   };
 
-  const goToNextPage = () => {
-    setCurrentPage((prev) => prev + 1);
+  // Function to check if all filters are empty for the reset filters button
+  const areAllFiltersEmpty = () => {
+    return Object.values(filters).every(value => 
+      (Array.isArray(value) ? value.length === 0 : value === "")
+    );
   };
 
-  const goToPreviousPage = () => {
-    setCurrentPage((prev) => prev - 1);
-  };
-
-  const filteredClothes = clothesArray
+  const filteredClothes = clothes
     .filter(
       (piece) =>
         (filters.category ? piece.category === filters.category : true) &&
-        (filters.color ? piece.color === filters.color : true) &&
+        (filters.color.length ? filters.color.includes(piece.color) : true) &&
         (filters.season ? piece.season === filters.season : true) &&
         (filters.brand ? piece.brand === filters.brand : true)
     )
@@ -48,23 +74,73 @@ export default function MainPage() {
         <ClothingCard clothingProp={piece} />
       </div>
     ));
+  
+  //*****PAGINATION*****
+  // Calculate the total number of pages
+  const totalPages = Math.ceil(filteredClothes.length / itemsPerPage);
 
-  // Calculate pagination
-  useEffect(() => {
-    setTotalPages(Math.ceil(filteredClothes.length / itemsPerPage));
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    setPaginatedData(filteredClothes.slice(startIndex, endIndex));
-  }, [currentPage, filteredClothes, itemsPerPage]);
+  // Get current page items
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredClothes.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Change page function
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  // Functions to handle previous and next page
+  const goToNextPage = () => {
+    setCurrentPage((prevCurrentPage) => Math.min(prevCurrentPage + 1, totalPages));
+  };
+
+  const goToPreviousPage = () => {
+    setCurrentPage((prevCurrentPage) => Math.max(prevCurrentPage - 1, 1));
+  };
+
+  // Render page numbers
+  const pageNumbers = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
+
+  //*****ADD NEW CLOTHES*****
+
+  //Handles the form change
+  const handleAddClothesFormChange = (event) => {
+    const { name, value } = event.target;
+
+    setNewClothing((prevNewClothing) => ({ ...newClothing, [name]: value }));
+  }
+
+  //Submit action
+  const handleAddNewClothingSubmit = (event) => {
+    event.preventDefault();
+    const newId = clothes.length;
+    const newClothingObject = {id: newId, wearCount: 0, ...newClothing};
+    
+    setClothes([...clothes, newClothingObject]);
+
+    //Reset the form state
+    setNewClothing({category: "",
+    brand: "",
+    color: "",
+    size: "",
+    season: "",
+    cost: 0});
+  }
 
   return (
     <>
-      <div>
-        <button name="resetButton" onClick={resetFilters}>
+      <h1 className="title">My Capsule Wardrobe</h1>
+
+      <div className="selectMenuWrapper">
+        <button className="bigButton blueButton" name="linkButton">Generate Outfits</button>
+        <button className="bigButton greenButton" name="linkButton">Add Clothes</button>
+
+        <button className="bigButton" name="resetButton" onClick={resetFilters} disabled={areAllFiltersEmpty()}>
           Reset Filters
         </button>
 
-        <select value={filters.color} name="color" onChange={handleFiltersChange}>
+        <select className="selectMenu" style={{ backgroundColor: filters.color.length !== 0 ? 'aquamarine' : 'white' }} multiple value={filters.color} name="color" onChange={handleFiltersChange}>
           <option value="" disabled selected>
             Color
           </option>
@@ -75,7 +151,7 @@ export default function MainPage() {
           ))}
         </select>
 
-        <select value={filters.brand} name="brand" onChange={handleFiltersChange}>
+        <select className="selectMenu" style={{ backgroundColor: filters.brand ? 'aquamarine' : 'white' }} value={filters.brand} name="brand" onChange={handleFiltersChange}>
           <option value="" disabled selected>
             Brand
           </option>
@@ -86,7 +162,7 @@ export default function MainPage() {
           ))}
         </select>
 
-        <select value={filters.category} name="category" onChange={handleFiltersChange}>
+        <select className="selectMenu" style={{ backgroundColor: filters.category ? 'aquamarine' : 'white' }} value={filters.category} name="category" onChange={handleFiltersChange}>
           <option value="" disabled selected>
             Category
           </option>
@@ -97,7 +173,7 @@ export default function MainPage() {
           ))}
         </select>
 
-        <select value={filters.season} name="season" onChange={handleFiltersChange}>
+        <select className="selectMenu" style={{ backgroundColor: filters.season ? 'aquamarine' : 'white' }} value={filters.season} name="season" onChange={handleFiltersChange}>
           <option value="" disabled selected>
             Season
           </option>
@@ -109,23 +185,36 @@ export default function MainPage() {
       </div>
 
       <div className="clothingCardContainer">
-        {paginatedData}
+        {currentItems}
       </div>
 
       <div>
-        <button onClick={goToPreviousPage} disabled={currentPage === 1}>
+        <form onSubmit={handleAddNewClothingSubmit}>
+          Category: <input type="text" name="category" value={newClothing.category} onChange={handleAddClothesFormChange} />
+          Season: <input type="text" name="season" value={newClothing.season} onChange={handleAddClothesFormChange} />
+          Size: <input type="text" name="size" value={newClothing.size} onChange={handleAddClothesFormChange} />
+          Color: <input type="text" name="color" value={newClothing.color} onChange={handleAddClothesFormChange} />
+          Brand: <input type="text" name="brand" value={newClothing.brand} onChange={handleAddClothesFormChange} />
+          Cost: <input type="number" name="cost" value={newClothing.cost} onChange={handleAddClothesFormChange} />
+          <button type="submit">Add New Piece</button>
+        </form>
+      </div>
+
+      {/* Pagination Controls */}
+      <nav className="paginationButtonNav">
+        <button className="mediumButton" onClick={goToPreviousPage} disabled={currentPage === 1}>
           Previous
         </button>
-        <span>
-          Page {currentPage} of {totalPages}
-        </span>
-        <button
-          onClick={goToNextPage}
-          disabled={currentPage * itemsPerPage >= filteredClothes.length}
-        >
+        {pageNumbers.map((number) => (
+          <button key={number} className={number === currentPage ? 'mediumButton greenButton' : 'mediumButton'} onClick={() => paginate(number)}>
+            {number}
+          </button>
+        ))}
+        <button className="mediumButton" onClick={goToNextPage} disabled={currentPage === totalPages}>
           Next
         </button>
-      </div>
+      </nav>
+
     </>
   );
 }

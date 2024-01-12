@@ -4,6 +4,7 @@ import shirt from './shirt.png';
 import sweater from './sweater.png';
 import jacket from './jacket.png';
 import pants from './pants.png';
+import { Link } from 'react-router-dom';
 
 export default function ClothingCard(props) {
   const costPerWear = (
@@ -29,9 +30,11 @@ export default function ClothingCard(props) {
         {props.clothingProp.color} | {props.clothingProp.season} |{" "}
         {props.clothingProp.size}{" "}
         | Cost per wear:{" "}
-        {props.clothingProp.wearCount !== 0 && (
-          <span>{costPerWear}</span>
-        )}
+        {props.clothingProp.wearCount !== 0 ? (
+          <span>{costPerWear} </span>
+        ) : "N/A" }
+        <br />
+        <Link to={`/edit/${props.clothingProp.id}`} name="deleteButton" className="smallButton blueButton">Edit</Link>
       </div>
     </div>
   );
