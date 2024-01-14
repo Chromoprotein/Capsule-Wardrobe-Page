@@ -1,16 +1,20 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { ClothingContext } from './clothingContext';
-import { Link } from 'react-router-dom';
+import BackButton from './BackButton';
 
 export default function EditClothing() {
 
     const { id } = useParams();
+    const numericId = +id;
+
     const { clothes, setClothes } = useContext(ClothingContext);
 
-    const individualPiece = clothes.find(obj => obj.id == id);
+    const individualPiece = clothes.find(obj => obj.id === numericId);
     const [formState, setFormState] = useState(individualPiece);
     
+    const navigate = useNavigate();
+
     const handleFormChange = (event) => {
         const { name, value } = event.target;
 
@@ -27,11 +31,20 @@ export default function EditClothing() {
                 return piece;
             }
         })
-        console.log(formState);
-        console.log(updatedClothes);
-        console.log(clothes)
         setClothes(updatedClothes);
     }
+
+    const handleDelete = async (itemId) => {
+        try {
+            const updatedClothes = clothes.filter(piece => piece.id !== numericId);
+            setClothes(updatedClothes);
+            
+            // Navigate to the main page
+            navigate('/');
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
 
     return (
         <div>
@@ -45,7 +58,10 @@ export default function EditClothing() {
                 <input type="text" name="cost"  value={formState.cost} onChange={handleFormChange}/>
                 <button type="submit">Save Changes</button>
             </form>
-            <Link to={`/`} name="deleteButton" className="smallButton blueButton">Return</Link>
-        </div>
+
+            <button type="button" className="smallButton dangerButton" onClick={handleDelete}>Delete</button>
+
+            <BackButton/>
+            </div>
     );
 };

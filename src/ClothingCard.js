@@ -34,7 +34,7 @@ export default function ClothingCard(props) {
           <span>{costPerWear} </span>
         ) : "N/A" }
         <br />
-        <Link to={`/edit/${props.clothingProp.id}`} name="deleteButton" className="smallButton blueButton">Edit</Link>
+        <Link to={`/edit/${props.clothingProp.id}`}><button type="button" name="deleteButton" className="smallButton blueButton">Edit</button></Link>
       </div>
     </div>
   );

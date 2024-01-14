@@ -4,7 +4,7 @@ import brands from "./brandsArray";
 import category from "./categoryArray";
 import ClothingCard from "./ClothingCard";
 import { ClothingContext } from "./clothingContext";
-import { Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function MainPage() {
   
@@ -20,15 +20,6 @@ export default function MainPage() {
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
-
-  //State for add new clothing form
-  const [newClothing, setNewClothing] = useState({
-    category: "",
-    brand: "",
-    color: "",
-    size: "",
-    season: "",
-    cost: 0})
 
   //*****FILTERS*****
   //Event handler for filters
@@ -102,39 +93,13 @@ export default function MainPage() {
     pageNumbers.push(i);
   }
 
-  //*****ADD NEW CLOTHES*****
-
-  //Handles the form change
-  const handleAddClothesFormChange = (event) => {
-    const { name, value } = event.target;
-
-    setNewClothing((prevNewClothing) => ({ ...newClothing, [name]: value }));
-  }
-
-  //Submit action
-  const handleAddNewClothingSubmit = (event) => {
-    event.preventDefault();
-    const newId = clothes.length;
-    const newClothingObject = {id: newId, wearCount: 0, ...newClothing};
-    
-    setClothes([...clothes, newClothingObject]);
-
-    //Reset the form state
-    setNewClothing({category: "",
-    brand: "",
-    color: "",
-    size: "",
-    season: "",
-    cost: 0});
-  }
-
   return (
     <>
       <h1 className="title">My Capsule Wardrobe</h1>
 
       <div className="selectMenuWrapper">
-        <button className="bigButton blueButton" name="linkButton">Generate Outfits</button>
-        <button className="bigButton greenButton" name="linkButton">Add Clothes</button>
+        <Link to={`/submit`}><button type="button" className="bigButton blueButton" name="linkButton">Add Clothes</button></Link>
+        <button className="bigButton greenButton" name="linkButton">Generate Outfits</button>
 
         <button className="bigButton" name="resetButton" onClick={resetFilters} disabled={areAllFiltersEmpty()}>
           Reset Filters
@@ -186,18 +151,6 @@ export default function MainPage() {
 
       <div className="clothingCardContainer">
         {currentItems}
-      </div>
-
-      <div>
-        <form onSubmit={handleAddNewClothingSubmit}>
-          Category: <input type="text" name="category" value={newClothing.category} onChange={handleAddClothesFormChange} />
-          Season: <input type="text" name="season" value={newClothing.season} onChange={handleAddClothesFormChange} />
-          Size: <input type="text" name="size" value={newClothing.size} onChange={handleAddClothesFormChange} />
-          Color: <input type="text" name="color" value={newClothing.color} onChange={handleAddClothesFormChange} />
-          Brand: <input type="text" name="brand" value={newClothing.brand} onChange={handleAddClothesFormChange} />
-          Cost: <input type="number" name="cost" value={newClothing.cost} onChange={handleAddClothesFormChange} />
-          <button type="submit">Add New Piece</button>
-        </form>
       </div>
 
       {/* Pagination Controls */}

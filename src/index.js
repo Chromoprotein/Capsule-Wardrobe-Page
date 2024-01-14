@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import EditClothing from './EditClothing';
 import { ClothingContextProvider } from './clothingContext';
+import SubmitClothing from './SubmitClothing';
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,11 @@ const router = createBrowserRouter([
   {
     path: "edit/:id",
     element: <EditClothing/>
-  }
+  },
+  {
+    path: "submit",
+    element: <SubmitClothing/>
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
