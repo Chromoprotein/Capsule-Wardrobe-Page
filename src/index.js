@@ -10,6 +10,9 @@ import {
 import EditClothing from './EditClothing';
 import { ClothingContextProvider } from './clothingContext';
 import SubmitClothing from './SubmitClothing';
+import GenerateOutfits from './GenerateOutfits';
+import { FilterContextProvider } from './filterContext';
+import { PaginationContextProvider } from './PaginationContext';
 
 const router = createBrowserRouter([
   {
@@ -24,13 +27,21 @@ const router = createBrowserRouter([
     path: "submit",
     element: <SubmitClothing/>
   },
+  {
+    path: "generate",
+    element: <GenerateOutfits/>
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ClothingContextProvider>
-      <RouterProvider router={router} />
+      <PaginationContextProvider>
+        <FilterContextProvider>
+          <RouterProvider router={router} />
+        </FilterContextProvider>
+      </PaginationContextProvider>
     </ClothingContextProvider>
   </React.StrictMode>
   
