@@ -1,4 +1,4 @@
-import { ClothingContext } from "./clothingContext";
+import { ClothingContext } from "./ClothingContext";
 import { useContext, useState } from "react";
 import BackButton from "./BackButton";
 

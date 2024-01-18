@@ -14,10 +14,9 @@ export const FilterContextProvider = ({ children }) => {
 
   const [resetButtonState, setResetButtonState] = useState(true);
 
-  const { currentPage, setCurrentPage } = useContext(PaginationContext);
+  const { setCurrentPage } = useContext(PaginationContext);
 
-  //*****FILTERS*****
-  //Event handler for filters
+    // Event handler for filters
     const handleFiltersChange = (event) => {
         const { name, value, checked } = event.target;
 
@@ -36,8 +35,8 @@ export const FilterContextProvider = ({ children }) => {
 
         setFilters(newFilters);
 
-        //empty filters = reset button disabled true
-        //not empty filters = reset button disabled false
+        // empty filters = reset button disabled: true
+        // filters are in use = reset button disabled: false
         const areAllFiltersEmpty = (filtersToCheck) => {
             return Object.values(filtersToCheck).every(value => 
                 (Array.isArray(value) ? value.length === 0 : value === "")
@@ -46,17 +45,31 @@ export const FilterContextProvider = ({ children }) => {
 
         setResetButtonState(areAllFiltersEmpty(newFilters));
 
+        // filter change returns to page 1
         setCurrentPage(1);
     };
 
     const resetFilters = () => {
         setFilters({ category: "", color: [], season: "", brand: "" });
         setResetButtonState(true);
+
+        // filter change returns to page 1
         setCurrentPage(1);
     };
 
+    // apply the filters to a clothing array
+    const filteredClothes = (clothes) => {
+        return clothes.filter(
+            (piece) =>
+            (filters.category ? piece.category === filters.category : true) &&
+            (filters.color.length ? filters.color.includes(piece.color) : true) &&
+            (filters.season ? piece.season === filters.season : true) &&
+            (filters.brand ? piece.brand === filters.brand : true)
+        );
+    };
+    
     return (
-        <FilterContext.Provider value={{ filters, setFilters, handleFiltersChange, resetFilters, resetButtonState, setResetButtonState }}>
+        <FilterContext.Provider value={{ filters, setFilters, handleFiltersChange, resetFilters, resetButtonState, setResetButtonState, filteredClothes }}>
             {children}
         </FilterContext.Provider>
     );

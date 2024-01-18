@@ -8,10 +8,10 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import EditClothing from './EditClothing';
-import { ClothingContextProvider } from './clothingContext';
+import { ClothingContextProvider } from './ClothingContext';
 import SubmitClothing from './SubmitClothing';
 import GenerateOutfits from './GenerateOutfits';
-import { FilterContextProvider } from './filterContext';
+import { FilterContextProvider } from './FilterContext';
 import { PaginationContextProvider } from './PaginationContext';
 
 const router = createBrowserRouter([

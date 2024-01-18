@@ -1,9 +1,13 @@
 import colors from "./ColorsArray";
 import brands from "./brandsArray";
 import category from "./categoryArray";
+import { useContext } from "react";
+import { FilterContext } from "./FilterContext";
 
-export default function ClothingFilters({ filters, resetButtonState, resetFilters, handleFiltersChange }) {
-    console.log(filters)
+export default function ClothingFilters() {
+    
+    const { filters, handleFiltersChange, resetFilters, resetButtonState } = useContext(FilterContext);
+
     return (
         <>
             <button className="bigButton" name="resetButton" onClick={resetFilters} disabled={resetButtonState}>

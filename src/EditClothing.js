@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
-import { ClothingContext } from './clothingContext';
+import { ClothingContext } from './ClothingContext';
 import BackButton from './BackButton';
 
 export default function EditClothing() {
