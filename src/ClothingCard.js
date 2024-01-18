@@ -4,6 +4,10 @@ import shirt from './shirt.png';
 import sweater from './sweater.png';
 import jacket from './jacket.png';
 import pants from './pants.png';
+import tights from './tights.png';
+import socks from './socks.png';
+import leggings from './leggings.png';
+import cardigan from './cardigan.png';
 import { Link } from 'react-router-dom';
 
 export default function ClothingCard(props) {
@@ -18,6 +22,10 @@ export default function ClothingCard(props) {
     sweater,
     jacket,
     pants,
+    tights,
+    socks,
+    leggings,
+    cardigan
   };
 
   const placeholder = images[props.clothingProp.category];
