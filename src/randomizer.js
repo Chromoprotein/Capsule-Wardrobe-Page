@@ -1,6 +1,6 @@
 export const randomizeOutfit = (clothesForOutfitGeneration) => {
 
-    let errorOccurred = false;
+    let errorMessage = "";
 
     // Function that makes arrays for different categories
     const filterArray = (array, ...queries) => {
@@ -12,50 +12,52 @@ export const randomizeOutfit = (clothesForOutfitGeneration) => {
         return arr[Math.floor(Math.random() * arr.length)];
     }
 
-    const topsAndDresses = filterArray(clothesForOutfitGeneration, "shirt", "dress", "sweater");
-    const hosiery = filterArray(clothesForOutfitGeneration, "leggings", "tights", "socks");
-    const bottoms = filterArray(clothesForOutfitGeneration, "skirt", "pants");
-    const shirts = filterArray(clothesForOutfitGeneration, "shirt");
-    const layers = filterArray(clothesForOutfitGeneration, "jacket", "cardigan");
+    const categories = {
+        topsAndDresses: ["shirt", "dress"],
+        hosiery: ["leggings", "tights", "socks"],
+        bottoms: ["skirt", "pants"],
+        shirts: ["shirt"],
+        layers: ["jacket", "cardigan", "sweater"]
+    };
+
+    // Filter the clothesForOutfitGeneration into their respective categories
+    // For each key (category), add a property with the category's name to the clothingItems object. The property's value is the filtered array
+    const clothingItems = {};
+    Object.keys(categories).forEach(category => {
+        clothingItems[category] = filterArray(clothesForOutfitGeneration, ...categories[category]);
+    });
 
     // Save clothing pieces here for the outfit
     const randomOutfit = [];
 
     // Choose a random top or a dress
-    if(topsAndDresses.length > 0) {
-        const randomTop = randomItem(topsAndDresses);
+    if(clothingItems.topsAndDresses.length > 0) {
+        const randomTop = randomItem(clothingItems.topsAndDresses);
         randomOutfit.push(randomTop);
 
         //If the selected is a dress, choose leggings, tights, or socks
-        if(randomTop.category === 'dress' && hosiery.length > 0) {
-            const randomHosiery = randomItem(hosiery);
+        if(randomTop.category === 'dress' && clothingItems.hosiery.length > 0) {
+            const randomHosiery = randomItem(clothingItems.hosiery);
             randomOutfit.push(randomHosiery);
         }
-        else if (bottoms.length > 0) { //If the selected is a top, choose a skirt or pants
-            const randomBottom = randomItem(bottoms);
+        else if (clothingItems.bottoms.length > 0) { //If the selected is a top, choose a skirt or pants
+            const randomBottom = randomItem(clothingItems.bottoms);
             randomOutfit.push(randomBottom);
         }
         else {
-            errorOccurred = true;
+            errorMessage = "You haven't added enough bottoms to make an outfit.";
         }
 
-        //If the first piece was a sweater, put a shirt under it
-        if(randomTop.category === 'sweater' && shirts.length > 0) {
-            const randomLayer = randomItem(shirts);
+        // Choose a layering piece if available
+        if (clothingItems.layers.length > 0) { 
+            const randomLayer = randomItem(clothingItems.layers);
             randomOutfit.push(randomLayer);
-        }
-        else if (layers.length > 0) { //Else, choose a different layering piece like a cardigan
-            const randomLayer = randomItem(layers);
-            randomOutfit.push(randomLayer);
-        }
-        else {
-            errorOccurred = true;
         }
 
     }
     else {
-        errorOccurred = true;
+        errorMessage = "You haven't added enough tops or dresses to make an outfit.";
     }
     
-    return { randomOutfit, errorOccurred };
+    return { randomOutfit, errorMessage };
 }

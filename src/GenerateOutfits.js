@@ -12,7 +12,7 @@ export default function GenerateOutfits() {
     // State for randomly generated outfits saved by the user
     const [savedOutfits, setSavedOutfits] = useState([]);
 
-    const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     // All clothing pieces array state
     const { clothes } = useContext(ClothingContext);
@@ -24,13 +24,10 @@ export default function GenerateOutfits() {
 
     // Generate random outfit
     const handleGenerateOutfit = () => {
-        const { randomOutfit, errorOccurred } = randomizeOutfit(clothesForOutfitGeneration);
+        const { randomOutfit, errorMessage } = randomizeOutfit(clothesForOutfitGeneration);
 
-        if (errorOccurred) {
-            setError(true);
-        } else {
-            setOutfit(randomOutfit);
-        }
+        setErrorMessage(errorMessage);
+        setOutfit(randomOutfit);
     };
 
     const mapOutfit = outfit
@@ -45,12 +42,14 @@ export default function GenerateOutfits() {
         setSavedOutfits([...savedOutfits, outfit]);
     }
 
+    console.log(errorMessage);
+
     return (
         <div>
 
             <ClothingFilters />
 
-            {error ? <div>Error: Not enough clothes to generate outfits!</div> : mapOutfit}
+            {errorMessage.length !== 0 ? <div>{errorMessage}</div> : mapOutfit}
 
             <button type="button" onClick={handleGenerateOutfit}>Generate Outfit</button>
 
