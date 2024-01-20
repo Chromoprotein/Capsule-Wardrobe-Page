@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import ClothingCard from "./ClothingCard";
 import { ClothingContext } from "./ClothingContext";
@@ -16,7 +16,7 @@ export default function MainPage() {
   // filteredClothes = function that applies filters on the clothes array
   const { filteredClothes } = useContext(FilterContext);
 
-  // currentItems = function that slices the clothes array for pagination purposes
+  // currentItems = function that slices the clothes/outfits array for pagination purposes
   const { currentItems } = useContext(PaginationContext);
   
   // Apply filters on clothes and map them
@@ -27,9 +27,9 @@ export default function MainPage() {
       </div>
     )
   );
-  
-  // Slice the array to show only the current page's contents
-  const paginatedClothes = currentItems(mapClothes);
+
+  // Pagination
+  const paginatedItems = currentItems(mapClothes);
 
   return (
     <>
@@ -45,7 +45,7 @@ export default function MainPage() {
 
       {/*The currently displayed clothes*/}
       <div className="clothingCardContainer">
-        {paginatedClothes}
+        {paginatedItems}
       </div>
 
       {/*Next, previous, and page number buttons. Takes an array of filtered clothes*/}

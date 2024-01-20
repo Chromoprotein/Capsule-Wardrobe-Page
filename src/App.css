@@ -55,6 +55,10 @@
   max-width: 800px;
   margin: 0 auto;
 }
+.outfitCardContainer {
+  border: 1px solid black;
+  padding:10px;
+}
 .clothingCard {
   width: 100%;
   max-width: 300px;

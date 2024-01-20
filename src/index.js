@@ -13,6 +13,8 @@ import SubmitClothing from './SubmitClothing';
 import GenerateOutfits from './GenerateOutfits';
 import { FilterContextProvider } from './FilterContext';
 import { PaginationContextProvider } from './PaginationContext';
+import { OutfitContextProvider } from './OutfitsContext';
+import SavedOutfits from './SavedOutfits';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,10 @@ const router = createBrowserRouter([
     path: "generate",
     element: <GenerateOutfits/>
   },
+  {
+    path: "outfits",
+    element: <SavedOutfits/>
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -39,7 +45,9 @@ root.render(
     <ClothingContextProvider>
       <PaginationContextProvider>
         <FilterContextProvider>
-          <RouterProvider router={router} />
+          <OutfitContextProvider>
+            <RouterProvider router={router} />
+          </OutfitContextProvider>
         </FilterContextProvider>
       </PaginationContextProvider>
     </ClothingContextProvider>

@@ -4,13 +4,15 @@ import { FilterContext } from "./FilterContext";
 import ClothingFilters from "./ClothingFilters";
 import ClothingCard from "./ClothingCard";
 import { randomizeOutfit } from "./randomizer";
+import { OutfitContext } from "./OutfitsContext";
+import BackButton from "./BackButton";
 
 export default function GenerateOutfits() {
 
     // State for the randomly generated outfit
     const [outfit, setOutfit] = useState([]);
     // State for randomly generated outfits saved by the user
-    const [savedOutfits, setSavedOutfits] = useState([]);
+    const { savedOutfits, setSavedOutfits } = useContext(OutfitContext);
 
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -55,6 +57,8 @@ export default function GenerateOutfits() {
 
             {/*If an outfit has been generated, show the save button*/}
             {outfit.length > 0 && <button type="button" onClick={saveOutfit}>Save Outfit</button>}
+
+            <BackButton />
 
         </div>
     );
