@@ -1,0 +1,1 @@
+export const formality = ["casual", "dressy casual", "workwear", "formal", "sports", "gardening-tier"];

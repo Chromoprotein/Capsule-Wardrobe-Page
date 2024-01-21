@@ -8,6 +8,7 @@ const clothesArray = [
     season: "autumn",
     wearCount: 47,
     cost: 187.37,
+    formality: "casual",
   },
   {
     id: 2,
@@ -18,6 +19,7 @@ const clothesArray = [
     season: "summer",
     wearCount: 32,
     cost: 30.25,
+    formality: "casual",
   },
   {
     id: 3,
@@ -28,6 +30,7 @@ const clothesArray = [
     season: "spring",
     wearCount: 21,
     cost: 96.03,
+    formality: "casual",
   },
   {
     id: 4,
@@ -38,6 +41,7 @@ const clothesArray = [
     season: "spring",
     wearCount: 1,
     cost: 184.32,
+    formality: "casual",
   },
   {
     id: 5,
@@ -48,6 +52,7 @@ const clothesArray = [
     season: "winter",
     wearCount: 0,
     cost: 29.01,
+    formality: "casual",
   },
   {
     id: 6,
@@ -58,6 +63,7 @@ const clothesArray = [
     season: "summer",
     wearCount: 25,
     cost: 148.27,
+    formality: "formal",
   },
   {
     id: 7,
@@ -68,6 +74,7 @@ const clothesArray = [
     season: "summer",
     wearCount: 8,
     cost: 147.37,
+    formality: "formal",
   },
   {
     id: 8,
@@ -78,6 +85,7 @@ const clothesArray = [
     season: "autumn",
     wearCount: 17,
     cost: 27.19,
+    formality: "formal",
   },
   {
     id: 9,
@@ -88,6 +96,7 @@ const clothesArray = [
     season: "summer",
     wearCount: 48,
     cost: 196.59,
+    formality: "formal",
   },
   {
     id: 10,
@@ -98,6 +107,7 @@ const clothesArray = [
     season: "spring",
     wearCount: 45,
     cost: 130.25,
+    formality: "formal",
   },
   {
     id: 11,
@@ -108,6 +118,7 @@ const clothesArray = [
     season: "spring",
     wearCount: 7,
     cost: 167.14,
+    formality: "formal",
   },
   {
     id: 12,
@@ -118,6 +129,7 @@ const clothesArray = [
     season: "winter",
     wearCount: 39,
     cost: 92.74,
+    formality: "sports",
   },
   {
     id: 13,
@@ -128,6 +140,7 @@ const clothesArray = [
     season: "winter",
     wearCount: 40,
     cost: 155.21,
+    formality: "sports",
   },
   {
     id: 14,
@@ -138,6 +151,7 @@ const clothesArray = [
     season: "spring",
     wearCount: 0,
     cost: 106.51,
+    formality: "sports",
   },
   {
     id: 15,
@@ -148,6 +162,7 @@ const clothesArray = [
     season: "winter",
     wearCount: 37,
     cost: 163.2,
+    formality: "sports",
   },
   {
     id: 16,
@@ -158,6 +173,7 @@ const clothesArray = [
     season: "autumn",
     wearCount: 2,
     cost: 45.28,
+    formality: "sports",
   },
   {
     id: 17,
@@ -168,6 +184,7 @@ const clothesArray = [
     season: "summer",
     wearCount: 4,
     cost: 150.29,
+    formality: "sports",
   },
   {
     id: 18,
@@ -178,6 +195,7 @@ const clothesArray = [
     season: "summer",
     wearCount: 21,
     cost: 31.31,
+    formality: "dressy casual",
   },
   {
     id: 19,
@@ -188,6 +206,7 @@ const clothesArray = [
     season: "summer",
     wearCount: 18,
     cost: 25.81,
+    formality: "dressy casual",
   },
   {
     id: 20,
@@ -198,6 +217,7 @@ const clothesArray = [
     season: "autumn",
     wearCount: 14,
     cost: 38.03,
+    formality: "dressy casual",
   },
   {
     id: 21,
@@ -208,6 +228,7 @@ const clothesArray = [
     season: "spring",
     wearCount: 5,
     cost: 25.50,
+    formality: "dressy casual",
   },
   {
     id: 22,
@@ -218,6 +239,7 @@ const clothesArray = [
     season: "winter",
     wearCount: 9,
     cost: 15.75,
+    formality: "dressy casual",
   },
   {
     id: 23,
@@ -228,6 +250,7 @@ const clothesArray = [
     season: "summer",
     wearCount: 20,
     cost: 8.99,
+    formality: "dressy casual",
   },
   {
     id: 24,
@@ -238,6 +261,7 @@ const clothesArray = [
     season: "autumn",
     wearCount: 12,
     cost: 45.30,
+    formality: "gardening-tier",
   },
   {
     id: 25,
@@ -248,6 +272,7 @@ const clothesArray = [
     season: "winter",
     wearCount: 7,
     cost: 30.20,
+    formality: "gardening-tier",
   },
   {
     id: 26,
@@ -258,6 +283,7 @@ const clothesArray = [
     season: "summer",
     wearCount: 3,
     cost: 22.10,
+    formality: "gardening-tier",
   },
   {
     id: 27,
@@ -268,6 +294,7 @@ const clothesArray = [
     season: "spring",
     wearCount: 11,
     cost: 18.00,
+    formality: "gardening-tier",
   },
   {
     id: 28,
@@ -278,6 +305,7 @@ const clothesArray = [
     season: "autumn",
     wearCount: 8,
     cost: 20.45,
+    formality: "gardening-tier",
   },
   {
     id: 29,
@@ -288,6 +316,7 @@ const clothesArray = [
     season: "winter",
     wearCount: 15,
     cost: 5.99,
+    formality: "workwear",
   },
   {
     id: 30,
@@ -298,6 +327,7 @@ const clothesArray = [
     season: "summer",
     wearCount: 10,
     cost: 7.50,
+    formality: "workwear",
   },
   {
     id: 31,
@@ -308,6 +338,7 @@ const clothesArray = [
     season: "spring",
     wearCount: 14,
     cost: 50.00,
+    formality: "workwear",
   },
   {
     id: 32,
@@ -318,6 +349,7 @@ const clothesArray = [
     season: "autumn",
     wearCount: 6,
     cost: 55.25,
+    formality: "workwear",
   }
 
 

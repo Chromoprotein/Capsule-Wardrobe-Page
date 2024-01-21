@@ -4,14 +4,21 @@ import BackButton from "./BackButton";
 import ClothingCard from "./ClothingCard";
 import PaginationControls from "./PaginationControls";
 import { PaginationContext } from "./PaginationContext";
+import DeleteButton from "./DeleteButton";
 
 export default function SavedOutfits() {
 
     // saved outfits
-    const { savedOutfits } = useContext(OutfitContext);
+    const { savedOutfits, setSavedOutfits } = useContext(OutfitContext);
 
     // currentItems = function that slices the clothes/outfits array for pagination purposes
     const { currentItems } = useContext(PaginationContext);
+
+    // Delete outfit event handler
+    const handleDelete = (indexToDelete) => {
+        const updatedOutfits = savedOutfits.filter((outfit, index) => index !== indexToDelete);
+        setSavedOutfits(updatedOutfits);
+    };
 
     // Map the outfits
     // "savedOutfits" is an array of arrays (outfits) which contain objects (clothing pieces)
@@ -22,6 +29,7 @@ export default function SavedOutfits() {
                     <ClothingCard clothingProp={piece} />
                 </div>
             ))}
+            <DeleteButton handleDelete={() => handleDelete(index)}/>
         </div>
     ));
 
@@ -33,12 +41,17 @@ export default function SavedOutfits() {
             
             <BackButton/>
 
-            <div className="clothingCardContainer">
-                {paginatedItems}
-            </div>
-
-            {/*Next, previous, and page number buttons. Takes an array of filtered clothes*/}
-            <PaginationControls clothes={mapOutfits} />
+            {paginatedItems.length > 0 ?
+            (
+                <>
+                    <div className="clothingCardContainer">
+                        {paginatedItems}
+                    </div>
+                    <PaginationControls clothes={mapOutfits} />
+                </>
+            )
+            : "No outfits saved"}
+            
         </div>
     );
 }

@@ -2,15 +2,21 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { ClothingContext } from './ClothingContext';
 import BackButton from './BackButton';
+import DeleteButton from './DeleteButton';
 
 export default function EditClothing() {
 
+    // Get the URL id
     const { id } = useParams();
+    // Turn it into a number
     const numericId = +id;
 
+    // Context that stores the clothes
     const { clothes, setClothes } = useContext(ClothingContext);
 
+    // Get the displayed clothing piece by the URL id
     const individualPiece = clothes.find(obj => obj.id === numericId);
+    
     const [formState, setFormState] = useState(individualPiece);
     
     const navigate = useNavigate();
@@ -34,7 +40,7 @@ export default function EditClothing() {
         setClothes(updatedClothes);
     }
 
-    const handleDelete = async (itemId) => {
+    const handleDelete = (event) => {
         try {
             const updatedClothes = clothes.filter(piece => piece.id !== numericId);
             setClothes(updatedClothes);
@@ -59,7 +65,7 @@ export default function EditClothing() {
                 <button type="submit">Save Changes</button>
             </form>
 
-            <button type="button" className="smallButton dangerButton" onClick={handleDelete}>Delete</button>
+            <DeleteButton handleDelete={handleDelete} />
 
             <BackButton/>
             </div>

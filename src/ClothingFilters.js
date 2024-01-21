@@ -1,6 +1,5 @@
 import colors from "./ColorsArray";
-import brands from "./brandsArray";
-import category from "./categoryArray";
+import { formality } from "./formalityArray";
 import { useContext } from "react";
 import { FilterContext } from "./FilterContext";
 
@@ -32,24 +31,13 @@ export default function ClothingFilters() {
                 ))}
             </div>
 
-            <select className="selectMenu" style={{ backgroundColor: filters.brand ? 'aquamarine' : 'white' }} value={filters.brand} name="brand" onChange={handleFiltersChange}>
+            <select className="selectMenu" style={{ backgroundColor: filters.formality ? 'aquamarine' : 'white' }} value={filters.formality} name="formality" onChange={handleFiltersChange}>
             <option value="" disabled selected>
-                Brand
+                Formality
             </option>
-            {brands.map((brand) => (
-                <option key={brand} value={brand}>
-                {brand}
-                </option>
-            ))}
-            </select>
-
-            <select className="selectMenu" style={{ backgroundColor: filters.category ? 'aquamarine' : 'white' }} value={filters.category} name="category" onChange={handleFiltersChange}>
-            <option value="" disabled selected>
-                Category
-            </option>
-            {category.map((category) => (
-                <option key={category} value={category}>
-                {category}
+            {formality.map((formality) => (
+                <option key={formality} value={formality}>
+                {formality}
                 </option>
             ))}
             </select>

@@ -6,10 +6,9 @@ export const FilterContext = createContext();
 export const FilterContextProvider = ({ children }) => {
 
   const [filters, setFilters] = useState({
-    category: "",
+    formality: "",
     color: [],
     season: "",
-    brand: "",
   });
 
   const [resetButtonState, setResetButtonState] = useState(true);
@@ -50,7 +49,7 @@ export const FilterContextProvider = ({ children }) => {
     };
 
     const resetFilters = () => {
-        setFilters({ category: "", color: [], season: "", brand: "" });
+        setFilters({ formality: "", color: [], season: "" });
         setResetButtonState(true);
 
         // filter change returns to page 1
@@ -61,10 +60,9 @@ export const FilterContextProvider = ({ children }) => {
     const filteredClothes = (clothes) => {
         return clothes.filter(
             (piece) =>
-            (filters.category ? piece.category === filters.category : true) &&
+            (filters.formality ? piece.formality === filters.formality : true) &&
             (filters.color.length ? filters.color.includes(piece.color) : true) &&
-            (filters.season ? piece.season === filters.season : true) &&
-            (filters.brand ? piece.brand === filters.brand : true)
+            (filters.season ? piece.season === filters.season : true)
         );
     };
     

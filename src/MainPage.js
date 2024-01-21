@@ -43,13 +43,20 @@ export default function MainPage() {
         <ClothingFilters />
       </div>
 
-      {/*The currently displayed clothes*/}
-      <div className="clothingCardContainer">
-        {paginatedItems}
-      </div>
+      {paginatedItems.length > 0 ? (
+        <>
+          {/*The currently displayed clothes*/}
+          <div className="clothingCardContainer">
+            {paginatedItems}
+          </div>
 
-      {/*Next, previous, and page number buttons. Takes an array of filtered clothes*/}
-      <PaginationControls clothes={mapClothes} />
+          {/*Next, previous, and page number buttons. Takes an array of filtered clothes*/}
+          <PaginationControls clothes={mapClothes} />
+        </>
+      ) : (
+        "No clothes saved. Try reducing filters."
+      )}
+
     </>
   );
 }

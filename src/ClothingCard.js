@@ -36,7 +36,7 @@ export default function ClothingCard(props) {
       <div className="clothingTextWrapper">
         {props.clothingProp.category} | {props.clothingProp.brand} |{" "}
         {props.clothingProp.color} | {props.clothingProp.season} |{" "}
-        {props.clothingProp.size}{" "}
+        {props.clothingProp.size} | {props.clothingProp.formality}{" "}
         | Cost per wear:{" "}
         {props.clothingProp.wearCount !== 0 ? (
           <span>{costPerWear} </span>
