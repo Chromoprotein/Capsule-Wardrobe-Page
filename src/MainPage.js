@@ -32,31 +32,34 @@ export default function MainPage() {
   const paginatedItems = currentItems(mapClothes);
 
   return (
-    <>
-      <h1 className="title">My Capsule Wardrobe</h1>
+    <div class="mainPageWrapper">
 
-      <div className="selectMenuWrapper">
-        {/*Navigation buttons for adding clothes and generating outfits*/}
-        <MainMenu/>
-
-        {/*Menu where you can choose filters for clothes*/}
-        <ClothingFilters />
+      <div class="menuGridWrapper">
+        <h1 className="title">My Capsule Wardrobe</h1>
+        <div className="selectMenuWrapper">
+          {/*Navigation buttons for adding clothes and generating outfits*/}
+          <MainMenu/>
+          {/*Menu where you can choose filters for clothes*/}
+          <ClothingFilters />
+        </div>
       </div>
 
-      {paginatedItems.length > 0 ? (
-        <>
-          {/*The currently displayed clothes*/}
-          <div className="clothingCardContainer">
-            {paginatedItems}
-          </div>
+      <div className="mainContentWrapper">
+        {paginatedItems.length > 0 ? (
+          <>
+            {/*The currently displayed clothes*/}
+            <div className="clothingCardContainer">
+              {paginatedItems}
+            </div>
 
-          {/*Next, previous, and page number buttons. Takes an array of filtered clothes*/}
-          <PaginationControls clothes={mapClothes} />
-        </>
-      ) : (
-        "No clothes saved. Try reducing filters."
-      )}
+            {/*Next, previous, and page number buttons. Takes an array of filtered clothes*/}
+            <PaginationControls clothes={mapClothes} />
+          </>
+        ) : (
+          "No clothes saved. Try reducing filters."
+        )}
+      </div>
 
-    </>
+    </div>
   );
 }

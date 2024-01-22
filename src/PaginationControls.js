@@ -24,18 +24,19 @@ export default function PaginationControls({ clothes }) {
 
   // Render page numbers
   const pageNumbers = Array.from({ length: myTotalPages }, (_, index) => index + 1);
+  console.log("test")
 
     return (
       <nav className="paginationButtonNav">
-        <button className="mediumButton" onClick={goToPreviousPage} disabled={currentPage === 1}>
+        <button className="mediumButton blueButton" onClick={goToPreviousPage} disabled={currentPage === 1}>
           Previous
         </button>
         {pageNumbers.map((number) => (
-          <button key={number} className={number === currentPage ? 'mediumButton greenButton' : 'mediumButton'} onClick={() => paginate(number)}>
+          <button key={number} className="mediumButton blueButton" onClick={() => paginate(number)} disabled={currentPage === number}>
             {number}
           </button>
         ))}
-        <button className="mediumButton" onClick={goToNextPage} disabled={currentPage === myTotalPages}>
+        <button className="mediumButton blueButton" onClick={goToNextPage} disabled={currentPage === myTotalPages}>
           Next
         </button>
       </nav>

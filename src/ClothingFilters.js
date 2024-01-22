@@ -9,14 +9,8 @@ export default function ClothingFilters() {
 
     return (
         <>
-            <button className="bigButton" name="resetButton" onClick={resetFilters} disabled={resetButtonState}>
-            Reset Filters
-            </button>
 
-            <div className="checkboxContainer" style={{ backgroundColor: filters.color.length !== 0 ? 'aquamarine' : 'white' }}>
-                <label>
-                    Color
-                </label>
+            <div className={filters.color.length !== 0 ? 'checkboxContainer activeBackground selectMenu' : 'checkboxContainer selectMenu'}>
                 {colors.map((color) => (
                     <div key={color}>
                         <input
@@ -31,7 +25,7 @@ export default function ClothingFilters() {
                 ))}
             </div>
 
-            <select className="selectMenu" style={{ backgroundColor: filters.formality ? 'aquamarine' : 'white' }} value={filters.formality} name="formality" onChange={handleFiltersChange}>
+            <select className={filters.formality ? 'selectMenu activeBackground' : 'selectMenu'} value={filters.formality} name="formality" onChange={handleFiltersChange}>
             <option value="" disabled selected>
                 Formality
             </option>
@@ -42,7 +36,7 @@ export default function ClothingFilters() {
             ))}
             </select>
 
-            <select className="selectMenu" style={{ backgroundColor: filters.season ? 'aquamarine' : 'white' }} value={filters.season} name="season" onChange={handleFiltersChange}>
+            <select className={filters.season ? 'selectMenu activeBackground' : 'selectMenu'} value={filters.season} name="season" onChange={handleFiltersChange}>
             <option value="" disabled selected>
                 Season
             </option>
@@ -51,6 +45,11 @@ export default function ClothingFilters() {
             <option value="summer">Summer</option>
             <option value="autumn">Autumn</option>
             </select>
+
+            <button className={resetButtonState ? "bigButton" : "bigButton activeBackground"} name="resetButton" onClick={resetFilters} disabled={resetButtonState}>
+            Reset Filters
+            </button>
+            
         </>
     );
 };
