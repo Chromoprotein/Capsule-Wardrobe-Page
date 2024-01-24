@@ -6,6 +6,7 @@ import ClothingFilters from "./ClothingFilters";
 import { FilterContext } from "./FilterContext";
 import { PaginationContext } from "./PaginationContext";
 import PaginationControls from "./PaginationControls";
+import logo from "./logo.png";
 import MainMenu from "./MainMenu";
 
 export default function MainPage() {
@@ -34,9 +35,9 @@ export default function MainPage() {
   return (
     <div class="mainPageWrapper">
 
-      <div class="menuGridWrapper">
-        <h1 className="title">My Capsule Wardrobe</h1>
-        <div className="selectMenuWrapper">
+      <div class="navbarWrapper">
+        <img src={logo} className="logoImage" alt="My Capsule Wardrobe"/>
+        <div className="navbarButtonsWrapper">
           {/*Navigation buttons for adding clothes and generating outfits*/}
           <MainMenu/>
           {/*Menu where you can choose filters for clothes*/}

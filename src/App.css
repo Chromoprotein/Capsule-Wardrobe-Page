@@ -1,4 +1,3 @@
-/*MAIN PAGE*/
 * {
   box-sizing: border-box;
   font-family:Arial, Helvetica, sans-serif;
@@ -16,7 +15,7 @@ html {
   margin: 5px;
   color: var(--colorpop);
 }
-/*wraps the entire main page*/
+/*wraps the entire main page to position the navbar and content*/
 .mainPageWrapper {
   display:grid;
   grid-template-columns: 1fr 10fr;
@@ -30,6 +29,7 @@ html {
 /*wraps the clothing cards and the pagination menu*/
 .mainContentWrapper {
   background-color: var(--medium);
+  padding:20px;
 }
 
 /*BUTTONS*/
@@ -41,11 +41,14 @@ button {
 button:not(:disabled):hover {
   transform: scale(1.05);
 }
-.bigButton:not(:disabled):hover {
-  transform: scale(1.02);
+button:disabled {
+  background-color: black;
+  color: gray;
 }
-.blueButton {
+/*colored buttons*/
+.blueButton { /*possibly not actually blue*/
   background-color:var(--colorpop);
+  color:black;
 }
 .dangerButton {
   background-color:rgb(82, 15, 27);
@@ -62,41 +65,44 @@ button:not(:disabled):hover {
   padding: 10px 20px 10px 20px;
   border-radius: 15px;
 }
+.bigButton:not(:disabled):hover {
+  transform: scale(1.02);
+}
 /*navigation buttons*/
 .mediumButton {
   margin: 3px;
   padding: 10px;
 }
-button:disabled {
-  background-color: black;
-  color:gray;
-}
 
 /*PAGINATION*/
+/*Nav container of the pagination buttons*/
 .paginationButtonNav {
   text-align: center;
   margin: 20px;
 }
 
-/*FILTERS*/
-/*wraps the title and the navigation buttons/filter menu*/
-.menuGridWrapper {
-  display:grid;
-  grid-template-rows: 1fr 5fr;
-  padding: 10px;
-  background-color: var(--dark);
+/*NAVBAR STUFF*/
+
+/*LOGO*/
+.logoImage {
+  width:100%;
+  max-width:200px;
 }
-/*wraps the navigation buttons and filter menu*/
-.selectMenuWrapper {
-  display:flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+
+/*FILTERS*/
+/*wraps the whole menu/navbar to position the logoImage and the selectMenuwrapper*/
+.navbarWrapper {
+  background-color: var(--dark);
+  max-width: 800px;
+  width: 100%;
+}
+/*wraps the navbar except the logo*/
+.navbarButtonsWrapper {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
   justify-content: center;
   align-items: center;
-  margin: 10px auto 10px auto;
-  max-width:800px;
-  width:100%;
-  padding:20px;
+  padding: 20px;
 }
 /*filter menu*/
 .selectMenu {
@@ -116,34 +122,70 @@ button:disabled {
   overflow:scroll;
   overflow-x: hidden;
 }
+/*style for selected filters*/
 .activeBackground {
   background-color: var(--colorpop);
   color:black;
 }
-/* Targeting the scrollbar */
+
+/*SCROLLBAR*/
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 10px;
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--medium);
 }
 ::-webkit-scrollbar-thumb {
   background: #888;
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--colorpop);
 }
+
+/*CHECKBOXES*/
+.form-control {
+  display: grid;
+  grid-template-columns: 1.7em auto;
+  align-items: center; /*y axis*/
+}
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  /* Remove most all native input styles */
+  appearance: none;
+  /* For iOS < 15 */
+  background-color: var(--dark);
+  /* Not removed via appearance */
+  margin: 0;
+  width: 1.15em;
+  height: 1.15em;
+  border-radius: 0.15em;
+  display: grid;
+  place-content: center;
+}
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  visibility: hidden;
+  /* Windows High Contrast Mode */
+  background-color: CanvasText;
+}
+input[type="checkbox"]:checked::before {
+  visibility: visible;
+}
+
 
 /*CLOTHING CARDS*/
 .clothingCardContainer {
   display:flex;
-  flex-wrap: wrap;
   flex-direction: row;
-  justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap:30px;
   width: 100%;
   margin: 0 auto;
   padding:10px;

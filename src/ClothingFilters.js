@@ -13,14 +13,18 @@ export default function ClothingFilters() {
             <div className={filters.color.length !== 0 ? 'checkboxContainer activeBackground selectMenu' : 'checkboxContainer selectMenu'}>
                 {colors.map((color) => (
                     <div key={color}>
-                        <input
-                            type="checkbox"
-                            name="color"
-                            value={color}
-                            checked={filters.color.includes(color)}
-                            onChange={handleFiltersChange}
-                        />
-                        {color}
+                        <label class="form-control">
+                            <input
+                                type="checkbox"
+                                name="color"
+                                value={color}
+                                checked={filters.color.includes(color)}
+                                onChange={handleFiltersChange}
+                                style={{backgroundColor: color}}
+                            />
+                            {color}
+                        </label>
+                        
                     </div>
                 ))}
             </div>
