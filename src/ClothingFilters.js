@@ -10,10 +10,10 @@ export default function ClothingFilters() {
     return (
         <>
 
-            <div className={filters.color.length !== 0 ? 'checkboxContainer activeBackground selectMenu' : 'checkboxContainer selectMenu'}>
+            <div className={filters.color.length !== 0 ? 'activeBackground bigButton checkboxContainer' : 'bigButton checkboxContainer  hoverEffect'}>
                 {colors.map((color) => (
                     <div key={color}>
-                        <label class="form-control">
+                        <label class="formControl">
                             <input
                                 type="checkbox"
                                 name="color"
@@ -21,15 +21,15 @@ export default function ClothingFilters() {
                                 checked={filters.color.includes(color)}
                                 onChange={handleFiltersChange}
                                 style={{backgroundColor: color}}
+                                className={color === "black" ? "whiteCheckmark" : "blackCheckmark"}
                             />
-                            {color}
                         </label>
                         
                     </div>
                 ))}
             </div>
 
-            <select className={filters.formality ? 'selectMenu activeBackground' : 'selectMenu'} value={filters.formality} name="formality" onChange={handleFiltersChange}>
+            <select className={filters.formality ? 'bigButton activeBackground' : 'bigButton hoverEffect'} value={filters.formality} name="formality" onChange={handleFiltersChange}>
             <option value="" disabled selected>
                 Formality
             </option>
@@ -40,7 +40,7 @@ export default function ClothingFilters() {
             ))}
             </select>
 
-            <select className={filters.season ? 'selectMenu activeBackground' : 'selectMenu'} value={filters.season} name="season" onChange={handleFiltersChange}>
+            <select className={filters.season ? 'bigButton activeBackground' : 'bigButton hoverEffect'} value={filters.season} name="season" onChange={handleFiltersChange}>
             <option value="" disabled selected>
                 Season
             </option>
@@ -50,7 +50,7 @@ export default function ClothingFilters() {
             <option value="autumn">Autumn</option>
             </select>
 
-            <button className={resetButtonState ? "bigButton" : "bigButton activeBackground"} name="resetButton" onClick={resetFilters} disabled={resetButtonState}>
+            <button className="bigButton hoverEffect" name="resetButton" onClick={resetFilters} disabled={resetButtonState}>
             Reset Filters
             </button>
             

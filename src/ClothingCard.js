@@ -30,20 +30,22 @@ export default function ClothingCard(props) {
 
   const placeholder = images[props.clothingProp.category];
 
+  const spacer = <span> &#8226; </span>;
+
   return (
-    <div className="clothingCard">
-      <img src={placeholder} alt={props.clothingProp.category} className="clothingImage" />
+    <div className="clothingCard hoverEffect">
+      <Link to={`/edit/${props.clothingProp.id}`}>
+      <img src={placeholder} alt={props.clothingProp.category} className="clothingImage placeholderImage" />
       <div className="clothingTextWrapper">
-        {props.clothingProp.category} | {props.clothingProp.brand} |{" "}
-        {props.clothingProp.color} | {props.clothingProp.season} |{" "}
-        {props.clothingProp.size} | {props.clothingProp.formality}{" "}
-        | Cost per wear:{" "}
+        {props.clothingProp.category} {spacer} {props.clothingProp.brand} {spacer}
+        {props.clothingProp.color} {spacer} {props.clothingProp.season} {spacer}
+        {props.clothingProp.size} {spacer} {props.clothingProp.formality} {spacer}
+        CPW:{" "}
         {props.clothingProp.wearCount !== 0 ? (
           <span>{costPerWear} </span>
         ) : "N/A" }
-        <br />
-        <Link to={`/edit/${props.clothingProp.id}`}><button type="button" name="deleteButton" className="smallButton">Edit</button></Link>
       </div>
+      </Link>
     </div>
   );
 }

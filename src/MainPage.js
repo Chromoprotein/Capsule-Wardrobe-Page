@@ -8,6 +8,7 @@ import { PaginationContext } from "./PaginationContext";
 import PaginationControls from "./PaginationControls";
 import logo from "./logo.png";
 import MainMenu from "./MainMenu";
+import { Link } from "react-router-dom";
 
 export default function MainPage() {
   
@@ -36,13 +37,11 @@ export default function MainPage() {
     <div class="mainPageWrapper">
 
       <div class="navbarWrapper">
-        <img src={logo} className="logoImage" alt="My Capsule Wardrobe"/>
-        <div className="navbarButtonsWrapper">
-          {/*Navigation buttons for adding clothes and generating outfits*/}
-          <MainMenu/>
-          {/*Menu where you can choose filters for clothes*/}
-          <ClothingFilters />
-        </div>
+        <Link to="/"><img src={logo} className="logoImage hoverEffect" alt="My Capsule Wardrobe"/></Link>
+        {/*Navigation buttons for adding clothes and generating outfits*/}
+        <MainMenu/>
+        {/*Menu where you can choose filters for clothes*/}
+        <ClothingFilters />
       </div>
 
       <div className="mainContentWrapper">

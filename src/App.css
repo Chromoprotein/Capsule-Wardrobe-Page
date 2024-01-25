@@ -1,131 +1,106 @@
+/*ENTIRE PAGE*/
 * {
-  box-sizing: border-box;
   font-family:Arial, Helvetica, sans-serif;
   --dark: #121212;
   --medium:#40394a;
   --colorpop: #BB86FC;
   --darkwhite:rgb(196, 194, 201);
 }
-
+*, ::before, ::after {
+  box-sizing: border-box;
+}
 html {
   color: var(--darkwhite);
 }
-.title {
-  text-align: center;
-  margin: 5px;
-  color: var(--colorpop);
+/*React router Link*/
+a {
+  text-decoration: none;
+  color: var(--darkwhite);
 }
+
+/*MAIN WRAPPERS*/
 /*wraps the entire main page to position the navbar and content*/
 .mainPageWrapper {
   display:grid;
-  grid-template-columns: 1fr 10fr;
+  grid-template-columns: 1fr 7fr;
 }
-
 @media only screen and (max-width: 720px) {
   .mainPageWrapper {
     grid-template-columns: 1fr;
   }
 }
+/*wraps the whole menu/navbar*/
+.navbarWrapper {
+  background-color: var(--dark);
+  width: 100%;
+}
 /*wraps the clothing cards and the pagination menu*/
 .mainContentWrapper {
-  background-color: var(--medium);
+  background-color: var(--dark);
   padding:20px;
 }
-
-/*BUTTONS*/
-button {
-  border: none;
-  color:white;
-  background-color: var(--medium);
-}
-button:not(:disabled):hover {
-  transform: scale(1.05);
-}
-button:disabled {
-  background-color: black;
-  color: gray;
-}
-/*colored buttons*/
-.blueButton { /*possibly not actually blue*/
-  background-color:var(--colorpop);
-  color:black;
-}
-.dangerButton {
-  background-color:rgb(82, 15, 27);
-}
-/*edit, delete, return buttons*/
-.smallButton {
-  margin: 3px;
-  padding: 5px 10px 5px 10px;
-  border-radius: 15px;
-}
-/*main menu buttons*/
-.bigButton {
-  margin: 10px;
-  padding: 10px 20px 10px 20px;
-  border-radius: 15px;
-}
-.bigButton:not(:disabled):hover {
-  transform: scale(1.02);
-}
-/*navigation buttons*/
-.mediumButton {
-  margin: 3px;
-  padding: 10px;
-}
-
-/*PAGINATION*/
 /*Nav container of the pagination buttons*/
 .paginationButtonNav {
   text-align: center;
   margin: 20px;
 }
 
-/*NAVBAR STUFF*/
+/*INTERACTION EFFECTS*/
+/*hover effect for interactive elements*/
+.hoverEffect:hover:not(:disabled) {
+  border: 3px solid var(--colorpop);
+  transition-duration: 0.3s;
+}
+/*style for selected elements*/
+.activeBackground {
+  border: 3px solid var(--colorpop);
+}
+
+/*BUTTONS*/
+button {
+  border: none;
+  color:var(--darkwhite);
+  background-color: var(--medium);
+}
+button:disabled {
+  background-color: black;
+  color: gray;
+}
+.dangerButton {
+  background-color:rgb(82, 15, 27);
+}
+/*edit, delete, return buttons use this*/
+.smallButton {
+  margin: 3px;
+  padding: 5px 10px 5px 10px;
+}
+/*navigation buttons use this*/
+.mediumButton {
+  margin: 3px;
+  padding: 10px;
+  background-color: var(--medium);
+  color: var(--dark);
+  border: 3px solid transparent;
+}
+/*left navbar components use this*/
+.bigButton {
+  margin: 3px auto 3px auto;
+  padding: 20px;
+  border: 3px solid transparent;
+  width: 100%;
+  background-color: var(--medium);
+  color: var(--darkwhite);
+  text-align: center;
+}
+.bigButton:focus {
+  outline: none;
+}
 
 /*LOGO*/
 .logoImage {
   width:100%;
-  max-width:200px;
-}
-
-/*FILTERS*/
-/*wraps the whole menu/navbar to position the logoImage and the selectMenuwrapper*/
-.navbarWrapper {
-  background-color: var(--dark);
-  max-width: 800px;
-  width: 100%;
-}
-/*wraps the navbar except the logo*/
-.navbarButtonsWrapper {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-/*filter menu*/
-.selectMenu {
-  margin: 10px auto 10px auto;
-  padding: 10px;
-  border:none;
-  width: 100%;
-  max-width:150px;
-  background-color: var(--medium);
-  color: var(--darkwhite);
-}
-.selectMenu:focus {
-  outline:none;
-}
-.checkboxContainer {
-  height:80px;
-  overflow:scroll;
-  overflow-x: hidden;
-}
-/*style for selected filters*/
-.activeBackground {
-  background-color: var(--colorpop);
-  color:black;
+  display: block;
+  margin-bottom: 3px;
 }
 
 /*SCROLLBAR*/
@@ -138,17 +113,24 @@ button:disabled {
 }
 ::-webkit-scrollbar-thumb {
   background: #888;
-  border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--colorpop);
 }
 
-/*CHECKBOXES*/
-.form-control {
-  display: grid;
-  grid-template-columns: 1.7em auto;
-  align-items: center; /*y axis*/
+/*CUSTOM CHECKBOXES*/
+/*label*/
+.checkboxContainer {
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.formControl:hover {
+  opacity:0.7;
+  transition-duration: 0.3s;
 }
 input[type="checkbox"] {
   -webkit-appearance: none;
@@ -160,23 +142,26 @@ input[type="checkbox"] {
   margin: 0;
   width: 1.15em;
   height: 1.15em;
-  border-radius: 0.15em;
   display: grid;
   place-content: center;
 }
+/*the checkmark*/
 input[type="checkbox"]::before {
   content: "";
   width: 0.65em;
   height: 0.65em;
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
   visibility: hidden;
-  /* Windows High Contrast Mode */
-  background-color: CanvasText;
+}
+.whiteCheckmark::before {
+  background-color: var(--darkwhite);
+}
+.blackCheckmark::before {
+  background-color: var(--dark);
 }
 input[type="checkbox"]:checked::before {
   visibility: visible;
 }
-
 
 /*CLOTHING CARDS*/
 .clothingCardContainer {
@@ -191,27 +176,27 @@ input[type="checkbox"]:checked::before {
   padding:10px;
 }
 .clothingCard {
-  background-color: var(--dark);
+  background-color: var(--medium);
   width: 100%;
   max-width: 300px;
   margin: 0px auto;
   aspect-ratio: 1 / 1;
-  padding: 10px;
   /*align the image and text horizontally and vertically inside the card using flexbox*/
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border-radius: 5px;
+  border:3px solid transparent;
 }
 .clothingImage {
   display: block;
   width: 100%;
-  max-width: 200px;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   margin: 0 auto;
-  border-radius: 5px;
+}
+.placeholderImage {
+  opacity:0.5;
 }
 .clothingTextWrapper {
   text-align: center;
@@ -221,6 +206,6 @@ input[type="checkbox"]:checked::before {
 
 /*OUTFITS*/
 .outfitCardContainer {
-  border: 1px solid black;
+  border: none;
   padding: 10px;
 }
