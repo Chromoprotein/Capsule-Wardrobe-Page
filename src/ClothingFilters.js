@@ -10,7 +10,7 @@ export default function ClothingFilters() {
     return (
         <>
 
-            <div className={filters.color.length !== 0 ? 'activeBackground bigButton checkboxContainer' : 'bigButton checkboxContainer  hoverEffect'}>
+            <div className={filters.color.length !== 0 ? 'selectedStyle bigButton checkboxContainer' : 'bigButton idleStyle checkboxContainer'}>
                 {colors.map((color) => (
                     <div key={color}>
                         <label class="formControl">
@@ -24,12 +24,11 @@ export default function ClothingFilters() {
                                 className={color === "black" ? "whiteCheckmark" : "blackCheckmark"}
                             />
                         </label>
-                        
                     </div>
                 ))}
             </div>
 
-            <select className={filters.formality ? 'bigButton activeBackground' : 'bigButton hoverEffect'} value={filters.formality} name="formality" onChange={handleFiltersChange}>
+            <select className={filters.formality ? 'bigButton selectedStyle' : 'bigButton idleStyle'} value={filters.formality} name="formality" onChange={handleFiltersChange}>
             <option value="" disabled selected>
                 Formality
             </option>
@@ -40,7 +39,7 @@ export default function ClothingFilters() {
             ))}
             </select>
 
-            <select className={filters.season ? 'bigButton activeBackground' : 'bigButton hoverEffect'} value={filters.season} name="season" onChange={handleFiltersChange}>
+            <select className={filters.season ? 'bigButton selectedStyle' : 'bigButton idleStyle'} value={filters.season} name="season" onChange={handleFiltersChange}>
             <option value="" disabled selected>
                 Season
             </option>
@@ -50,7 +49,7 @@ export default function ClothingFilters() {
             <option value="autumn">Autumn</option>
             </select>
 
-            <button className="bigButton hoverEffect" name="resetButton" onClick={resetFilters} disabled={resetButtonState}>
+            <button className={resetButtonState ? "bigButton disabledStyle" : "bigButton idleStyle"} name="resetButton" onClick={resetFilters} disabled={resetButtonState}>
             Reset Filters
             </button>
             

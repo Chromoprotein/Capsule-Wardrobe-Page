@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 
-import ClothingCard from "./ClothingCard";
+import ClothingCard from "./ClothingCard.tsx";
 import { ClothingContext } from "./ClothingContext";
 import ClothingFilters from "./ClothingFilters";
 import { FilterContext } from "./FilterContext";
@@ -37,7 +37,7 @@ export default function MainPage() {
     <div class="mainPageWrapper">
 
       <div class="navbarWrapper">
-        <Link to="/"><img src={logo} className="logoImage hoverEffect" alt="My Capsule Wardrobe"/></Link>
+        <Link to="/"><img src={logo} className="logoImage idleStyle" alt="My Capsule Wardrobe"/></Link>
         {/*Navigation buttons for adding clothes and generating outfits*/}
         <MainMenu/>
         {/*Menu where you can choose filters for clothes*/}

@@ -28,15 +28,15 @@ export default function PaginationControls({ clothes }) {
 
     return (
       <nav className="paginationButtonNav">
-        <button className="mediumButton hoverEffect" onClick={goToPreviousPage} disabled={currentPage === 1}>
+        <button className={currentPage === 1 ? "mediumButton disabledStyle" : "mediumButton idleStyle"} onClick={goToPreviousPage} disabled={currentPage === 1}>
           <span>&#8592;</span>
         </button>
         {pageNumbers.map((number) => (
-          <button key={number} className="mediumButton hoverEffect" onClick={() => paginate(number)} disabled={currentPage === number}>
+          <button key={number} className={currentPage === number ? "mediumButton selectedStyle" : "mediumButton idleStyle"} onClick={() => paginate(number)} disabled={currentPage === number}>
             {number}
           </button>
         ))}
-        <button className="mediumButton hoverEffect" onClick={goToNextPage} disabled={currentPage === myTotalPages}>
+        <button className={currentPage === myTotalPages ? "mediumButton disabledStyle" : "mediumButton idleStyle"} onClick={goToNextPage} disabled={currentPage === myTotalPages}>
           <span>&#8594;</span>
         </button>
       </nav>

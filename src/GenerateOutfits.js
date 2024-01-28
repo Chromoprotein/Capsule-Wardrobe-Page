@@ -2,7 +2,7 @@ import { ClothingContext } from "./ClothingContext";
 import { useContext, useState } from "react";
 import { FilterContext } from "./FilterContext";
 import ClothingFilters from "./ClothingFilters";
-import ClothingCard from "./ClothingCard";
+import ClothingCard from "./ClothingCard.tsx";
 import { randomizeOutfit } from "./randomizer";
 import { OutfitContext } from "./OutfitsContext";
 import BackButton from "./BackButton";

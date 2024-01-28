@@ -1,7 +1,7 @@
 import { OutfitContext } from "./OutfitsContext";
 import { useContext } from "react";
 import BackButton from "./BackButton";
-import ClothingCard from "./ClothingCard";
+import ClothingCard from "./ClothingCard.tsx";
 import PaginationControls from "./PaginationControls";
 import { PaginationContext } from "./PaginationContext";
 import DeleteButton from "./DeleteButton";
