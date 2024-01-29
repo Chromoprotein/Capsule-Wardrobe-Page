@@ -1,5 +1,8 @@
 export default function DeleteButton({handleDelete}) {
     return (
-        <button type="button" className="smallButton dangerButton" onClick={handleDelete}>Delete</button>
+        <div className="formWrapper">
+            <p>- - Danger zone - - Delete permanently</p>
+            <button type="button" className="bigButton dangerButton" onClick={handleDelete}>Delete</button>
+        </div>
     );
 }

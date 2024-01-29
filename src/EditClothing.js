@@ -1,8 +1,9 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { ClothingContext } from './ClothingContext';
-import BackButton from './BackButton';
 import DeleteButton from './DeleteButton';
+import ClothingForm from './ClothingForm';
+import { PaginationContext } from './PaginationContext';
 
 export default function EditClothing() {
 
@@ -13,6 +14,8 @@ export default function EditClothing() {
 
     // Context that stores the clothes
     const { clothes, setClothes } = useContext(ClothingContext);
+
+    const { setCurrentPage } = useContext(PaginationContext);
 
     // Get the displayed clothing piece by the URL id
     const individualPiece = clothes.find(obj => obj.id === numericId);
@@ -38,12 +41,15 @@ export default function EditClothing() {
             }
         })
         setClothes(updatedClothes);
+        // Navigate to the main page
+        navigate('/');
     }
 
     const handleDelete = (event) => {
         try {
             const updatedClothes = clothes.filter(piece => piece.id !== numericId);
             setClothes(updatedClothes);
+            setCurrentPage(1);
             
             // Navigate to the main page
             navigate('/');
@@ -54,20 +60,11 @@ export default function EditClothing() {
 
     return (
         <div>
-            <form onSubmit={handleEdit}>
-                <input type="text" name="category" value={formState.category} onChange={handleFormChange}/>
-                <input type="text" name="color"  value={formState.color} onChange={handleFormChange}/>
-                <input type="text" name="brand"  value={formState.brand} onChange={handleFormChange}/>
-                <input type="text" name="season"  value={formState.season} onChange={handleFormChange}/>
-                <input type="text" name="size"  value={formState.size} onChange={handleFormChange}/>
-                <input type="text" name="wearCount"  value={formState.wearCount} onChange={handleFormChange}/>
-                <input type="text" name="cost"  value={formState.cost} onChange={handleFormChange}/>
-                <button type="submit">Save Changes</button>
-            </form>
+
+            <ClothingForm handleClothingSubmit={handleEdit} newClothing={formState} handleClothesFormChange={handleFormChange} />
 
             <DeleteButton handleDelete={handleDelete} />
 
-            <BackButton/>
-            </div>
+        </div>
     );
 };

@@ -5,12 +5,15 @@
   --medium:#40394a;
   --colorpop: #BB86FC;
   --darkwhite:rgb(196, 194, 201);
+  --extragrey: rgba(54, 40, 58, 0.616);
 }
 *, ::before, ::after {
   box-sizing: border-box;
+  font-size: 16px;
 }
 html {
   color: var(--darkwhite);
+  background-color: var(--dark);
 }
 /*React router Link*/
 a {
@@ -46,27 +49,19 @@ a {
 }
 
 /*FORM*/
+/*wraps the whole form*/
 .formWrapper {
-  background-color: var(--dark);
+  background-color: var(--extragrey);
   width:100%;
-  margin: 0 auto;
-  padding: 20px;
+  max-width: 400px;
+  margin: 5px auto;
+  padding: 50px;
 }
-.formInputContainer {
-  margin: 0 auto;
-  width: 100%;
-  max-width:150px;
-}
-.textInputContainer {
-  margin: 6px auto 6px auto;
-  padding: 20px;
-  background-color: var(--medium);
-  border: 3px solid transparent;
-}
+/*text input element*/
 .textInputStyle {
   border:3px solid transparent;
   padding:10px;
-  background-color: rgba(54, 40, 58, 0.616);
+  background-color: var(--extragrey);
   width:100%;
   margin: 5px;
   color: var(--darkwhite);
@@ -79,10 +74,6 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
-input[type="number"] {
-  -moz-appearance: textfield;
-  /* Firefox */
 }
 
 /*INTERACTION EFFECTS*/
@@ -97,7 +88,7 @@ input[type="number"] {
   background-color: var(--medium);
   color: var(--darkwhite);
 }
-.idleStyle:hover:not(:disabled), .textInputContainer:hover {
+.idleStyle:hover:not(:disabled) {
   border: 3px solid var(--colorpop);
   transition-duration: 0.3s;
 }
@@ -106,15 +97,18 @@ input[type="number"] {
   background-color: black;
   color: gray;
 }
+/*formControl = the label element of custom checkboxes and radio buttons*/
+.formControl:hover,
+.textInputStyle:hover,
+.dangerButton:hover {
+  opacity: 0.7;
+  transition-duration: 0.3s;
+}
 
 /*BUTTON SIZES AND DEFAULT COLOR*/
 .dangerButton {
   background-color:rgb(82, 15, 27);
-}
-/*edit, delete, return buttons use this*/
-.smallButton {
-  margin: 3px;
-  padding: 5px 10px 5px 10px;
+  border: 3px solid transparent;
 }
 /*navigation buttons use this*/
 .mediumButton {
@@ -123,10 +117,11 @@ input[type="number"] {
 }
 /*left navbar components use this*/
 .bigButton {
-  margin: 3px auto 3px auto;
+  margin: 4px auto 4px auto;
   padding: 20px;
   width: 100%;
   text-align-last: center; /*so the text in dropdown menus isn't messed up*/
+  display:block;
 }
 .bigButton:focus {
   outline: none;
@@ -163,10 +158,6 @@ input[type="number"] {
   gap: 10px;
   align-items: center;
   justify-content: center;
-}
-.formControl:hover, .textInputStyle:hover {
-  opacity:0.7;
-  transition-duration: 0.3s;
 }
 input[type="checkbox"], input[type="radio"] {
   -webkit-appearance: none;
