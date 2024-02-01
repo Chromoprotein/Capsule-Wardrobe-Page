@@ -1,11 +1,14 @@
 import { ClothingContext } from "./ClothingContext";
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import ClothingForm from "./ClothingForm";
+import useReturn from "./useReturn";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function SubmitClothing() {
+
   const { clothes, setClothes } = useContext(ClothingContext);
-  //State for add new clothing form
+
+  //State for adding new clothing
   const [newClothing, setNewClothing] = useState({
       category: "",
       brand: "",
@@ -13,10 +16,11 @@ export default function SubmitClothing() {
       size: "",
       season: "",
       cost: 0})
+  
+  const returnToFrontPage = useReturn();
 
-  const navigate = useNavigate();
-
-  //*****ADD NEW CLOTHES*****
+  // For the form submission message
+  const [actionType, setActionType] = useState("");
 
   //Handles the form change
   const handleClothesFormChange = (event) => {
@@ -28,25 +32,19 @@ export default function SubmitClothing() {
   //Submit action
   const handleClothingSubmit = (event) => {
     event.preventDefault();
-    const newId = clothes.length;
+    const newId = uuidv4();
     const newClothingObject = {id: newId, wearCount: 0, ...newClothing};
     
     setClothes((prevClothes) => ([...clothes, newClothingObject]));
 
-    //Reset the form state
-    setNewClothing({category: "",
-    brand: "",
-    color: "",
-    size: "",
-    season: "",
-    cost: 0});
+    setActionType("submit");
 
-    navigate('/');
+    returnToFrontPage();
   }
 
     return (
       <>
-        <ClothingForm handleClothingSubmit={handleClothingSubmit} newClothing={newClothing} handleClothesFormChange={handleClothesFormChange} />
+        <ClothingForm handleClothingSubmit={handleClothingSubmit} newClothing={newClothing} handleClothesFormChange={handleClothesFormChange} actionType={actionType} />
       </>
     );
 };

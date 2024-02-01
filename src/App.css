@@ -126,6 +126,9 @@ input[type="number"]::-webkit-outer-spin-button {
 .bigButton:focus {
   outline: none;
 }
+.specialButton {
+  background-color: #bb86fc4e !important;
+}
 
 /*LOGO*/
 .logoImage {

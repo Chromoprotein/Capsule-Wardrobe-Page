@@ -2,8 +2,9 @@ import BackButton from "./BackButton";
 import colors from "./ColorsArray";
 import { formality } from "./formalityArray";
 import category from "./categoryArray";
+import SubmitButton from "./SubmitButton";
 
-export default function ClothingForm({ handleClothingSubmit, newClothing, handleClothesFormChange }) {
+export default function ClothingForm({ handleClothingSubmit, newClothing, handleClothesFormChange, actionType }) {
 
       // Submit button
     const isDisabled = !(newClothing.category && newClothing.season && newClothing.formality && newClothing.color && newClothing.brand && newClothing.cost && newClothing.size);
@@ -84,8 +85,8 @@ export default function ClothingForm({ handleClothingSubmit, newClothing, handle
               <input className="textInputStyle" type="number" name="cost" value={newClothing.cost} onChange={handleClothesFormChange} />
             </div>
 
-            <button className={isDisabled ? "bigButton disabledStyle" : "bigButton idleStyle"} type="submit" disabled={isDisabled}>Submit</button>
-
+            <SubmitButton isDisabled={isDisabled} actionType={actionType} />
+    
         </form>
 
           <BackButton/>

@@ -1,6 +1,6 @@
 const clothesArray = [
   {
-    id: 1,
+    id: "1",
     category: "pants",
     brand: "Brand D",
     color: "blue",
@@ -11,7 +11,7 @@ const clothesArray = [
     formality: "casual",
   },
   {
-    id: 2,
+    id: "2",
     category: "sweater",
     brand: "Brand B",
     color: "white",
@@ -22,7 +22,7 @@ const clothesArray = [
     formality: "casual",
   },
   {
-    id: 3,
+    id: "3",
     category: "pants",
     brand: "Brand C",
     color: "red",
@@ -33,7 +33,7 @@ const clothesArray = [
     formality: "casual",
   },
   {
-    id: 4,
+    id: "4",
     category: "shirt",
     brand: "Brand B",
     color: "blue",
@@ -44,7 +44,7 @@ const clothesArray = [
     formality: "casual",
   },
   {
-    id: 5,
+    id: "5",
     category: "shirt",
     brand: "Brand A",
     color: "red",
@@ -55,7 +55,7 @@ const clothesArray = [
     formality: "casual",
   },
   {
-    id: 6,
+    id: "6",
     category: "skirt",
     brand: "Brand E",
     color: "yellow",
@@ -66,7 +66,7 @@ const clothesArray = [
     formality: "formal",
   },
   {
-    id: 7,
+    id: "7",
     category: "dress",
     brand: "Brand C",
     color: "yellow",
@@ -77,7 +77,7 @@ const clothesArray = [
     formality: "formal",
   },
   {
-    id: 8,
+    id: "8",
     category: "pants",
     brand: "Brand A",
     color: "black",
@@ -88,7 +88,7 @@ const clothesArray = [
     formality: "formal",
   },
   {
-    id: 9,
+    id: "9",
     category: "dress",
     brand: "Brand C",
     color: "red",
@@ -99,7 +99,7 @@ const clothesArray = [
     formality: "formal",
   },
   {
-    id: 10,
+    id: "10",
     category: "jacket",
     brand: "Brand C",
     color: "blue",
@@ -110,7 +110,7 @@ const clothesArray = [
     formality: "formal",
   },
   {
-    id: 11,
+    id: "11",
     category: "shirt",
     brand: "Brand E",
     color: "green",
@@ -121,7 +121,7 @@ const clothesArray = [
     formality: "formal",
   },
   {
-    id: 12,
+    id: "12",
     category: "shirt",
     brand: "Brand C",
     color: "white",
@@ -132,7 +132,7 @@ const clothesArray = [
     formality: "sports",
   },
   {
-    id: 13,
+    id: "13",
     category: "dress",
     brand: "Brand C",
     color: "black",
@@ -143,7 +143,7 @@ const clothesArray = [
     formality: "sports",
   },
   {
-    id: 14,
+    id: "14",
     category: "dress",
     brand: "Brand B",
     color: "black",
@@ -154,7 +154,7 @@ const clothesArray = [
     formality: "sports",
   },
   {
-    id: 15,
+    id: "15",
     category: "jacket",
     brand: "Brand B",
     color: "blue",
@@ -165,7 +165,7 @@ const clothesArray = [
     formality: "sports",
   },
   {
-    id: 16,
+    id: "16",
     category: "pants",
     brand: "Brand C",
     color: "green",
@@ -176,7 +176,7 @@ const clothesArray = [
     formality: "sports",
   },
   {
-    id: 17,
+    id: "17",
     category: "pants",
     brand: "Brand D",
     color: "white",
@@ -187,7 +187,7 @@ const clothesArray = [
     formality: "sports",
   },
   {
-    id: 18,
+    id: "18",
     category: "sweater",
     brand: "Brand A",
     color: "green",
@@ -198,7 +198,7 @@ const clothesArray = [
     formality: "dressy casual",
   },
   {
-    id: 19,
+    id: "19",
     category: "shirt",
     brand: "Brand D",
     color: "green",
@@ -209,7 +209,7 @@ const clothesArray = [
     formality: "dressy casual",
   },
   {
-    id: 20,
+    id: "20",
     category: "sweater",
     brand: "Brand E",
     color: "green",
@@ -220,7 +220,7 @@ const clothesArray = [
     formality: "dressy casual",
   },
   {
-    id: 21,
+    id: "21",
     category: "leggings",
     brand: "Brand A",
     color: "black",
@@ -231,7 +231,7 @@ const clothesArray = [
     formality: "dressy casual",
   },
   {
-    id: 22,
+    id: "22",
     category: "tights",
     brand: "Brand C",
     color: "red",
@@ -242,7 +242,7 @@ const clothesArray = [
     formality: "dressy casual",
   },
   {
-    id: 23,
+    id: "23",
     category: "socks",
     brand: "Brand B",
     color: "blue",
@@ -253,7 +253,7 @@ const clothesArray = [
     formality: "dressy casual",
   },
   {
-    id: 24,
+    id: "24",
     category: "cardigan",
     brand: "Brand D",
     color: "grey",
@@ -264,7 +264,7 @@ const clothesArray = [
     formality: "gardening-tier",
   },
   {
-    id: 25,
+    id: "25",
     category: "leggings",
     brand: "Brand F",
     color: "purple",
@@ -275,7 +275,7 @@ const clothesArray = [
     formality: "gardening-tier",
   },
   {
-    id: 26,
+    id: "26",
     category: "leggings",
     brand: "Brand G",
     color: "pink",
@@ -286,7 +286,7 @@ const clothesArray = [
     formality: "gardening-tier",
   },
   {
-    id: 27,
+    id: "27",
     category: "tights",
     brand: "Brand H",
     color: "yellow",
@@ -297,7 +297,7 @@ const clothesArray = [
     formality: "gardening-tier",
   },
   {
-    id: 28,
+    id: "28",
     category: "tights",
     brand: "Brand I",
     color: "orange",
@@ -308,7 +308,7 @@ const clothesArray = [
     formality: "gardening-tier",
   },
   {
-    id: 29,
+    id: "29",
     category: "socks",
     brand: "Brand J",
     color: "white",
@@ -319,7 +319,7 @@ const clothesArray = [
     formality: "workwear",
   },
   {
-    id: 30,
+    id: "30",
     category: "socks",
     brand: "Brand K",
     color: "brown",
@@ -330,7 +330,7 @@ const clothesArray = [
     formality: "workwear",
   },
   {
-    id: 31,
+    id: "31",
     category: "cardigan",
     brand: "Brand L",
     color: "beige",
@@ -341,7 +341,7 @@ const clothesArray = [
     formality: "workwear",
   },
   {
-    id: 32,
+    id: "32",
     category: "cardigan",
     brand: "Brand M",
     color: "blue",
