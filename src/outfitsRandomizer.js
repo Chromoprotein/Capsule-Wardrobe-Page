@@ -1,4 +1,4 @@
-export const randomizeOutfit = (clothesForOutfitGeneration) => {
+export const outfitsRandomizer = (clothesForOutfitGeneration) => {
 
     let errorMessage = "";
 

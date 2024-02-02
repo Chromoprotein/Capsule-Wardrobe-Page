@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { outfitsArray } from "./outfitsArray";
+import { outfitsArray } from "../dummyData/outfitsArray";
 
 export const OutfitContext = createContext();
 

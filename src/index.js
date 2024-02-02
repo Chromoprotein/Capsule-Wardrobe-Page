@@ -1,20 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import EditClothing from './EditClothing';
-import { ClothingContextProvider } from './ClothingContext';
-import SubmitClothing from './SubmitClothing';
+import { ClothingContextProvider } from './contexts/ClothingContext';
 import GenerateOutfits from './GenerateOutfits';
-import { FilterContextProvider } from './FilterContext';
-import { PaginationContextProvider } from './PaginationContext';
-import { OutfitContextProvider } from './OutfitsContext';
+import { FilterContextProvider } from './contexts/FilterContext';
+import { PaginationContextProvider } from './contexts/PaginationContext';
+import { OutfitContextProvider } from './contexts/OutfitsContext';
 import SavedOutfits from './SavedOutfits';
+import ClothingFormLogic from './ClothingFormLogic';
 
 const router = createBrowserRouter([
   {
@@ -23,11 +21,11 @@ const router = createBrowserRouter([
   },
   {
     path: "edit/:id",
-    element: <EditClothing/>
+    element: <ClothingFormLogic/>
   },
   {
     path: "submit",
-    element: <SubmitClothing/>
+    element: <ClothingFormLogic/>
   },
   {
     path: "generate",

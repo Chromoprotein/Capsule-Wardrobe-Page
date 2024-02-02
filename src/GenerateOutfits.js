@@ -1,11 +1,11 @@
-import { ClothingContext } from "./ClothingContext";
+import { ClothingContext } from "./contexts/ClothingContext";
 import { useContext, useState } from "react";
-import { FilterContext } from "./FilterContext";
+import { FilterContext } from "./contexts/FilterContext";
 import ClothingFilters from "./ClothingFilters";
 import ClothingCard from "./ClothingCard.tsx";
-import { randomizeOutfit } from "./randomizer";
-import { OutfitContext } from "./OutfitsContext";
-import BackButton from "./BackButton";
+import { outfitsRandomizer } from "./outfitsRandomizer";
+import { OutfitContext } from "./contexts/OutfitsContext";
+import BackButton from "./buttons/BackButton";
 
 export default function GenerateOutfits() {
 
@@ -26,7 +26,7 @@ export default function GenerateOutfits() {
 
     // Generate random outfit
     const handleGenerateOutfit = () => {
-        const { randomOutfit, errorMessage } = randomizeOutfit(clothesForOutfitGeneration);
+        const { randomOutfit, errorMessage } = outfitsRandomizer(clothesForOutfitGeneration);
 
         setErrorMessage(errorMessage);
         setOutfit(randomOutfit);

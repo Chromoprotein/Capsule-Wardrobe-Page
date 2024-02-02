@@ -20,6 +20,9 @@ a {
   text-decoration: none;
   color: var(--darkwhite);
 }
+body {
+  margin: 0;
+}
 
 /*MAIN WRAPPERS*/
 /*wraps the entire main page to position the navbar and content*/

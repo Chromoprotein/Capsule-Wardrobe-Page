@@ -1,8 +1,8 @@
-import BackButton from "./BackButton";
-import colors from "./ColorsArray";
-import { formality } from "./formalityArray";
-import category from "./categoryArray";
-import SubmitButton from "./SubmitButton";
+import BackButton from "./buttons/BackButton";
+import colors from "./dummyData/ColorsArray";
+import { formality } from "./dummyData/formalityArray";
+import category from "./dummyData/categoryArray";
+import SubmitButton from "./buttons/SubmitButton";
 
 export default function ClothingForm({ handleClothingSubmit, newClothing, handleClothesFormChange, actionType }) {
 

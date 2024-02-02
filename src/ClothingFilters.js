@@ -1,7 +1,7 @@
-import colors from "./ColorsArray";
-import { formality } from "./formalityArray";
+import colors from "./dummyData/ColorsArray";
+import { formality } from "./dummyData/formalityArray";
 import { useContext } from "react";
-import { FilterContext } from "./FilterContext";
+import { FilterContext } from "./contexts/FilterContext";
 
 export default function ClothingFilters() {
     

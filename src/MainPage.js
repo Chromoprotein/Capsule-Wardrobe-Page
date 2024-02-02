@@ -1,12 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import ClothingCard from "./ClothingCard.tsx";
-import { ClothingContext } from "./ClothingContext";
+import { ClothingContext } from "./contexts/ClothingContext.js";
 import ClothingFilters from "./ClothingFilters";
-import { FilterContext } from "./FilterContext";
-import { PaginationContext } from "./PaginationContext";
+import { FilterContext } from "./contexts/FilterContext.js";
+import { PaginationContext } from "./contexts/PaginationContext.js";
 import PaginationControls from "./PaginationControls";
-import logo from "./logo.png";
+import logo from "./img/logo.png";
 import MainMenu from "./MainMenu";
 import { Link } from "react-router-dom";
 

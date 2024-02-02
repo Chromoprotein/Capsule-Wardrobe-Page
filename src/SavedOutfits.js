@@ -1,10 +1,10 @@
-import { OutfitContext } from "./OutfitsContext";
+import { OutfitContext } from "./contexts/OutfitsContext";
 import { useContext } from "react";
-import BackButton from "./BackButton";
+import BackButton from "./buttons/BackButton";
 import ClothingCard from "./ClothingCard.tsx";
 import PaginationControls from "./PaginationControls";
-import { PaginationContext } from "./PaginationContext";
-import DeleteButton from "./DeleteButton";
+import { PaginationContext } from "./contexts/PaginationContext";
+import DeleteButton from "./buttons/DeleteButton";
 
 export default function SavedOutfits() {
 
