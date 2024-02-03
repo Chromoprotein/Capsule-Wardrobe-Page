@@ -108,7 +108,7 @@ input[type="number"]::-webkit-outer-spin-button {
   transition-duration: 0.3s;
 }
 
-/*BUTTON SIZES AND DEFAULT COLOR*/
+/*BUTTON*/
 .dangerButton {
   background-color:rgb(82, 15, 27);
   border: 3px solid transparent;
@@ -125,6 +125,7 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 100%;
   text-align-last: center; /*so the text in dropdown menus isn't messed up*/
   display:block;
+  max-width: 200px;
 }
 .bigButton:focus {
   outline: none;
@@ -202,7 +203,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content:center;
   gap:30px;
   width: 100%;
   margin: 0 auto;
@@ -234,11 +235,5 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before {
 .clothingTextWrapper {
   text-align: center;
   vertical-align: middle;
-  padding: 10px;
-}
-
-/*OUTFITS*/
-.outfitCardContainer {
-  border: none;
   padding: 10px;
 }

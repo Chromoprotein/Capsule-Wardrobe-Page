@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { PaginationContext } from "./contexts/PaginationContext";
+import { PaginationContext } from "../contexts/PaginationContext";
 
 export default function PaginationControls({ clothes }) {
     

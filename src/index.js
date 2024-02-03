@@ -1,18 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import App from './components/App';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import { ClothingContextProvider } from './contexts/ClothingContext';
-import GenerateOutfits from './GenerateOutfits';
-import { FilterContextProvider } from './contexts/FilterContext';
-import { PaginationContextProvider } from './contexts/PaginationContext';
-import { OutfitContextProvider } from './contexts/OutfitsContext';
-import SavedOutfits from './SavedOutfits';
-import ClothingFormLogic from './ClothingFormLogic';
+import GenerateOutfits from './components/GenerateOutfits';
+import SavedOutfits from './components/SavedOutfits';
+import ClothingFormLogic from './components/ClothingFormLogic';
+import { ClothingContextProvider, FilterContextProvider, OutfitContextProvider, PaginationContextProvider } from './contexts/index.js';
 
 const router = createBrowserRouter([
   {
@@ -52,8 +48,3 @@ root.render(
   </React.StrictMode>
   
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

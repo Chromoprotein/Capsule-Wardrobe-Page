@@ -1,13 +1,13 @@
-import dress from './img/dress.png';
-import skirt from './img/skirt.png';
-import shirt from './img/shirt.png';
-import sweater from './img/sweater.png';
-import jacket from './img/jacket.png';
-import pants from './img/pants.png';
-import tights from './img/tights.png';
-import socks from './img/socks.png';
-import leggings from './img/leggings.png';
-import cardigan from './img/cardigan.png';
+import dress from '../img/dress.png';
+import skirt from '../img/skirt.png';
+import shirt from '../img/shirt.png';
+import sweater from '../img/sweater.png';
+import jacket from '../img/jacket.png';
+import pants from '../img/pants.png';
+import tights from '../img/tights.png';
+import socks from '../img/socks.png';
+import leggings from '../img/leggings.png';
+import cardigan from '../img/cardigan.png';
 import { Link } from 'react-router-dom';
 
 type ClothingCategory = 'dress' | 'skirt' | 'shirt' | 'sweater' | 'jacket' | 'pants' | 'tights' | 'socks' | 'leggings' | 'cardigan';

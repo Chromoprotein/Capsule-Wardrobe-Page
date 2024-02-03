@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useContext, useState } from 'react';
-import { ClothingContext } from './contexts/ClothingContext';
+import { ClothingContext } from '../contexts/ClothingContext';
 import DeleteButton from './buttons/DeleteButton';
 import ClothingForm from './ClothingForm';
-import { PaginationContext } from './contexts/PaginationContext';
-import useReturn from './useReturn';
+import { PaginationContext } from '../contexts/PaginationContext';
+import useReturn from '../utils/useReturn';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function ClothingFormLogic() {
@@ -19,13 +19,11 @@ export default function ClothingFormLogic() {
     const individualPiece = id 
         ? clothes.find(obj => obj.id === id)
         : {
-            id: "",
             category: "",
             brand: "",
             color: "",
             size: "",
             season: "",
-            wearCount: 0,
             cost: 0,
             formality: "",
         }
@@ -75,7 +73,7 @@ export default function ClothingFormLogic() {
     const handleAdd = (event) => {
         event.preventDefault();
         const newId = uuidv4();
-        const newClothingObject = {id: newId, ...formState};
+        const newClothingObject = {id: newId, wearCount: 0, ...formState};
         
         setClothes((prevClothes) => ([...clothes, newClothingObject]));
 
@@ -88,7 +86,7 @@ export default function ClothingFormLogic() {
       <>
         <ClothingForm handleClothingSubmit={id ? handleEdit : handleAdd} newClothing={formState} handleClothesFormChange={handleFormChange} actionType={actionType} />
 
-        <DeleteButton handleDelete={handleDelete} actionType= {actionType} />
+        {id && <DeleteButton handleDelete={handleDelete} actionType= {actionType} />}
       </>
     );
 
