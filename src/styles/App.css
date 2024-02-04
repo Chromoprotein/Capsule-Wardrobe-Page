@@ -45,10 +45,26 @@ body {
   background-color: var(--dark);
   padding:20px;
 }
+/*wraps buttons on the generate outfits page*/
+.outfitButtonWrapper {
+  max-width:500px;
+}
+/*on the saved outfits page*/
+.outfitContainer {
+  background-color: var(--extragrey);
+}
 /*Nav container of the pagination buttons*/
 .paginationButtonNav {
   text-align: center;
   margin: 20px;
+}
+.message {
+  background-color: var(--colorpop);
+  color: var(--dark);
+  width:100%;
+  max-width:400px;
+  padding:20px;
+  margin: 20px auto;
 }
 
 /*FORM*/
@@ -102,15 +118,39 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 /*formControl = the label element of custom checkboxes and radio buttons*/
 .formControl:hover,
-.textInputStyle:hover,
-.dangerButton:hover {
+.textInputStyle:hover {
   opacity: 0.7;
   transition-duration: 0.3s;
 }
 
+/*FADE IN AND OUT ANIMATION*/
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+/* Apply animations to a class */
+.success-animation {
+  animation: fadeIn 0.5s ease-out, fadeOut 0.5s ease-out 2.5s;
+  /* Fade in and stay visible for 2.5s before fading out */
+  animation-fill-mode: forwards;
+  /* Keeps the animation state at the end of the animation (stays faded out) */
+}
+
 /*BUTTON*/
 .dangerButton {
-  background-color:rgb(82, 15, 27);
+  background-color:rgba(82, 15, 27, 0.639) !important;
   border: 3px solid transparent;
 }
 /*navigation buttons use this*/
@@ -206,7 +246,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before {
   justify-content:center;
   gap:30px;
   width: 100%;
-  margin: 0 auto;
+  margin: 20px auto;
   padding:10px;
 }
 .clothingCard {

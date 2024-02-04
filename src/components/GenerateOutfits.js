@@ -5,19 +5,14 @@ import ClothingFilters from "./ClothingFilters";
 import ClothingCard from "./ClothingCard";
 import { outfitsRandomizer } from "../utils/outfitsRandomizer";
 import { OutfitContext } from "../contexts/OutfitsContext";
-import BackButton from "./buttons/BackButton";
-import SimpleButton from "./buttons/SimpleButton";
-import { Link } from "react-router-dom";
-import logo from "../img/logo.png";
+import BackButton from "./BackButton";
+import Button from "./Button";
 
 export default function GenerateOutfits() {
 
-    // State for the randomly generated outfit
-    const [outfit, setOutfit] = useState([]);
     // State for randomly generated outfits saved by the user
     const { savedOutfits, setSavedOutfits } = useContext(OutfitContext);
-
-    const [errorMessage, setErrorMessage] = useState("");
+    const [isSuccess, setIsSuccess] = useState(false);
 
     // State for the all clothing pieces array
     const { clothes } = useContext(ClothingContext);
@@ -27,16 +22,24 @@ export default function GenerateOutfits() {
     // Apply the filter on clothes
     const clothesForOutfitGeneration = filteredClothes(clothes);
 
+    // State for the randomly generated outfit and for the error message
+    // values: randomOutfit, errorMessage
+    const [outfit, setOutfit] = useState(() => outfitsRandomizer(clothesForOutfitGeneration));
+
     // Generate random outfit
     const handleGenerateOutfit = () => {
+        setIsSuccess(false);
         const { randomOutfit, errorMessage } = outfitsRandomizer(clothesForOutfitGeneration);
 
-        setErrorMessage(errorMessage);
-        setOutfit(randomOutfit);
+        setOutfit(prevOutfit => ({
+            ...prevOutfit,
+            errorMessage: errorMessage,
+            randomOutfit: randomOutfit,
+        }))
     };
 
     // Display the generated outfit
-    const mapOutfit = outfit
+    const mapOutfit = outfit.randomOutfit
         .map((piece) => (
         <div key={piece.id}>
             <ClothingCard clothingProp={piece} />
@@ -45,35 +48,34 @@ export default function GenerateOutfits() {
     );
 
     const saveOutfit = (event) => {
-        setSavedOutfits([...savedOutfits, outfit]);
+        const ids = outfit.randomOutfit.map(piece => piece.id);
+        setSavedOutfits([...savedOutfits, ids]);
+        setIsSuccess(true);
+        console.log(ids)
     }
 
     return (
         <div class="mainPageWrapper">
             <div class="navbarWrapper">
-                <Link to="/"><img src={logo} className="logoImage idleStyle" alt="My Capsule Wardrobe"/></Link>
+
                 <ClothingFilters />
+
+                <Button children="Re-generate Outfit" eventHandler={handleGenerateOutfit} />
+
+                {/*If an outfit has been generated, show the save button*/}
+                {outfit.errorMessage.length === 0 && 
+                    <Button children="Save Outfit" isSuccess={isSuccess} eventHandler={saveOutfit} />
+                }
+
                 <BackButton />
             </div>
 
             <div className="mainContentWrapper">
                 <div className="clothingCardContainer">
-                    <SimpleButton text="Generate Outfit" eventHandler={handleGenerateOutfit} />
-                    {/*If an outfit has been generated, show the save button*/}
-                    {outfit.length > 0 && 
-                    <SimpleButton text="Save Outfit" eventHandler={saveOutfit} />
-                    }
-                </div>
-
-                <div className="clothingCardContainer">
                     {/*Show the outfit or error message as applicable*/}
-                    {errorMessage.length !== 0 ? <div>{errorMessage}</div> : mapOutfit}
+                    {outfit.errorMessage.length !== 0 ? <div className="message">{outfit.errorMessage}</div> : mapOutfit}
                 </div>
-
             </div>
-
-
-
         </div>
     );
 }

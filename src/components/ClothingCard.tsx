@@ -22,6 +22,7 @@ interface ClothingProp {
   season: string;
   size: string;
   formality: string;
+  img: string;
 }
 
 interface ClothingCardProps {
@@ -30,7 +31,7 @@ interface ClothingCardProps {
 
 export default function ClothingCard({ clothingProp }: ClothingCardProps) {
 
-  const { cost, wearCount, category, id, brand, color, season, size, formality } = clothingProp;
+  const { cost, wearCount, category, id, brand, color, season, size, formality, img } = clothingProp;
 
   const costPerWear = (cost / wearCount).toFixed(2);
 
@@ -51,18 +52,18 @@ export default function ClothingCard({ clothingProp }: ClothingCardProps) {
   };
 
   // The key is a clothing category, the value is an image
-  const placeholder = images[category];
+  const clothingPicture = img.length === 0 ? images[category] : img;
 
   const spacer = <span> &#8226; </span>;
 
   return (
     <div className="clothingCard idleStyle">
       <Link to={`/edit/${id}`}>
-      <img src={placeholder} alt={category} className="clothingImage placeholderImage" />
+      <img src={clothingPicture} alt={category} className="clothingImage placeholderImage" />
       <div className="clothingTextWrapper">
         {category} {spacer} {brand} {spacer}
         {color} {spacer} {season} {spacer}
-        {size} {spacer} {formality} {spacer}
+        {size} {spacer} {formality} {spacer} wears: {wearCount} {spacer}
         CPW:{" "}
         {wearCount !== 0 ? (
           <span>{costPerWear} </span>

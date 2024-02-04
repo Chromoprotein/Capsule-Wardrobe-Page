@@ -9,6 +9,7 @@ const clothesArray = [
     wearCount: 47,
     cost: 187.37,
     formality: "casual",
+    img: "",
   },
   {
     id: "2",
@@ -20,6 +21,7 @@ const clothesArray = [
     wearCount: 32,
     cost: 30.25,
     formality: "casual",
+    img: "",
   },
   {
     id: "3",
@@ -31,6 +33,7 @@ const clothesArray = [
     wearCount: 21,
     cost: 96.03,
     formality: "casual",
+    img: "",
   },
   {
     id: "4",
@@ -42,6 +45,7 @@ const clothesArray = [
     wearCount: 1,
     cost: 184.32,
     formality: "casual",
+    img: "",
   },
   {
     id: "5",
@@ -53,6 +57,7 @@ const clothesArray = [
     wearCount: 0,
     cost: 29.01,
     formality: "casual",
+    img: "",
   },
   {
     id: "6",
@@ -64,6 +69,7 @@ const clothesArray = [
     wearCount: 25,
     cost: 148.27,
     formality: "formal",
+    img: "",
   },
   {
     id: "7",
@@ -75,6 +81,7 @@ const clothesArray = [
     wearCount: 8,
     cost: 147.37,
     formality: "formal",
+    img: "",
   },
   {
     id: "8",
@@ -86,6 +93,7 @@ const clothesArray = [
     wearCount: 17,
     cost: 27.19,
     formality: "formal",
+    img: "",
   },
   {
     id: "9",
@@ -97,6 +105,7 @@ const clothesArray = [
     wearCount: 48,
     cost: 196.59,
     formality: "formal",
+    img: "",
   },
   {
     id: "10",
@@ -108,6 +117,7 @@ const clothesArray = [
     wearCount: 45,
     cost: 130.25,
     formality: "formal",
+    img: "",
   },
   {
     id: "11",
@@ -119,6 +129,7 @@ const clothesArray = [
     wearCount: 7,
     cost: 167.14,
     formality: "formal",
+    img: "",
   },
   {
     id: "12",
@@ -130,6 +141,7 @@ const clothesArray = [
     wearCount: 39,
     cost: 92.74,
     formality: "sports",
+    img: "",
   },
   {
     id: "13",
@@ -141,6 +153,7 @@ const clothesArray = [
     wearCount: 40,
     cost: 155.21,
     formality: "sports",
+    img: "",
   },
   {
     id: "14",
@@ -152,6 +165,7 @@ const clothesArray = [
     wearCount: 0,
     cost: 106.51,
     formality: "sports",
+    img: "",
   },
   {
     id: "15",
@@ -163,6 +177,7 @@ const clothesArray = [
     wearCount: 37,
     cost: 163.2,
     formality: "sports",
+    img: "",
   },
   {
     id: "16",
@@ -174,6 +189,7 @@ const clothesArray = [
     wearCount: 2,
     cost: 45.28,
     formality: "sports",
+    img: "",
   },
   {
     id: "17",
@@ -185,6 +201,7 @@ const clothesArray = [
     wearCount: 4,
     cost: 150.29,
     formality: "sports",
+    img: "",
   },
   {
     id: "18",
@@ -196,6 +213,7 @@ const clothesArray = [
     wearCount: 21,
     cost: 31.31,
     formality: "dressy casual",
+    img: "",
   },
   {
     id: "19",
@@ -207,6 +225,7 @@ const clothesArray = [
     wearCount: 18,
     cost: 25.81,
     formality: "dressy casual",
+    img: "",
   },
   {
     id: "20",
@@ -218,6 +237,7 @@ const clothesArray = [
     wearCount: 14,
     cost: 38.03,
     formality: "dressy casual",
+    img: "",
   },
   {
     id: "21",
@@ -229,6 +249,7 @@ const clothesArray = [
     wearCount: 5,
     cost: 25.50,
     formality: "dressy casual",
+    img: "",
   },
   {
     id: "22",
@@ -240,6 +261,7 @@ const clothesArray = [
     wearCount: 9,
     cost: 15.75,
     formality: "dressy casual",
+    img: "",
   },
   {
     id: "23",
@@ -251,6 +273,7 @@ const clothesArray = [
     wearCount: 20,
     cost: 8.99,
     formality: "dressy casual",
+    img: "",
   },
   {
     id: "24",
@@ -262,6 +285,7 @@ const clothesArray = [
     wearCount: 12,
     cost: 45.30,
     formality: "gardening-tier",
+    img: "",
   },
   {
     id: "25",
@@ -273,6 +297,7 @@ const clothesArray = [
     wearCount: 7,
     cost: 30.20,
     formality: "gardening-tier",
+    img: "",
   },
   {
     id: "26",
@@ -284,6 +309,7 @@ const clothesArray = [
     wearCount: 3,
     cost: 22.10,
     formality: "gardening-tier",
+    img: "",
   },
   {
     id: "27",
@@ -295,6 +321,7 @@ const clothesArray = [
     wearCount: 11,
     cost: 18.00,
     formality: "gardening-tier",
+    img: "",
   },
   {
     id: "28",
@@ -306,6 +333,7 @@ const clothesArray = [
     wearCount: 8,
     cost: 20.45,
     formality: "gardening-tier",
+    img: "",
   },
   {
     id: "29",
@@ -317,6 +345,7 @@ const clothesArray = [
     wearCount: 15,
     cost: 5.99,
     formality: "workwear",
+    img: "",
   },
   {
     id: "30",
@@ -328,6 +357,7 @@ const clothesArray = [
     wearCount: 10,
     cost: 7.50,
     formality: "workwear",
+    img: "",
   },
   {
     id: "31",
@@ -339,6 +369,7 @@ const clothesArray = [
     wearCount: 14,
     cost: 50.00,
     formality: "workwear",
+    img: "",
   },
   {
     id: "32",
@@ -350,6 +381,7 @@ const clothesArray = [
     wearCount: 6,
     cost: 55.25,
     formality: "workwear",
+    img: "",
   }
 
 

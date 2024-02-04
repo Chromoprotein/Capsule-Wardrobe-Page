@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { FilterContext } from "../contexts/FilterContext";
 import { seasons } from "../dummyData/seasonsArray";
 import { ColorPicker, SelectMenu } from "./FormComponents";
-import ResetButton from "./buttons/ResetButton";
+import Button from "./Button";
 
 export default function ClothingFilters() {
     
@@ -19,7 +19,7 @@ export default function ClothingFilters() {
 
             <SelectMenu name="season" menuState={filters.season} inputArray={seasons} eventHandler={handleFiltersChange}/>
 
-            <ResetButton resetButtonState={resetButtonState} resetFilters={resetFilters} />
+            <Button isDisabled={resetButtonState} children="Reset Filters" eventHandler={resetFilters} />
             
         </>
     );

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { ClothingContext } from '../contexts/ClothingContext';
-import DeleteButton from './buttons/DeleteButton';
+import Button from './Button';
 import ClothingForm from './ClothingForm';
 import { PaginationContext } from '../contexts/PaginationContext';
 import useReturn from '../utils/useReturn';
@@ -26,13 +26,15 @@ export default function ClothingFormLogic() {
             season: "",
             cost: 0,
             formality: "",
+            img: "",
         }
     const [formState, setFormState] = useState(individualPiece);
 
     // Pagination context
     const { setCurrentPage } = useContext(PaginationContext);
     // For the form submission success message
-    const [actionType, setActionType] = useState("");
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [isSuccessDelete, setIsSuccessDelete] = useState(false);
     // Return to front page
     const returnToFrontPage = useReturn();
 
@@ -42,9 +44,19 @@ export default function ClothingFormLogic() {
         setFormState((prevState) => ({ ...formState, [name]: value }));
     }
 
+    const handleImageChange = (e) => {
+        // Check if any files were uploaded
+        if (e.target.files && e.target.files[0]) {
+            // Create a URL for the uploaded file
+            const uploadedImage = URL.createObjectURL(e.target.files[0]);
+            // Update the state with the new image
+            setFormState((prevState) => ({ ...formState, img: uploadedImage }));
+        }
+    };
+
     const handleEdit = (event) => {
         event.preventDefault();
-        setActionType("submit");
+        setIsSuccess(true);
 
         const updatedClothes = clothes.map(piece => {
             if(piece.id ===  formState.id) {
@@ -60,11 +72,11 @@ export default function ClothingFormLogic() {
 
     const handleDelete = (event) => {
         event.preventDefault();
-        setActionType("delete");
 
         const updatedClothes = clothes.filter(piece => piece.id !== id);
         setClothes(updatedClothes);
         setCurrentPage(1);
+        setIsSuccessDelete(true);
         
         returnToFrontPage();
     };
@@ -77,16 +89,18 @@ export default function ClothingFormLogic() {
         
         setClothes((prevClothes) => ([...clothes, newClothingObject]));
 
-        setActionType("submit");
+        setIsSuccess(true);
 
         returnToFrontPage();
     }
 
     return (
       <>
-        <ClothingForm handleClothingSubmit={id ? handleEdit : handleAdd} newClothing={formState} handleClothesFormChange={handleFormChange} actionType={actionType} />
+        <ClothingForm newItem={id ? false : true} handleClothingSubmit={id ? handleEdit : handleAdd} newClothing={formState} handleClothesFormChange={handleFormChange} isSuccess={isSuccess} handleImageChange={handleImageChange} image={formState.img} />
 
-        {id && <DeleteButton handleDelete={handleDelete} actionType= {actionType} />}
+        <div className="mainContentWrapper">
+            {id && <Button children="Delete" eventHandler={handleDelete} actionType="delete" isSuccess={isSuccessDelete} />}
+        </div>
       </>
     );
 

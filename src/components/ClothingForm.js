@@ -1,13 +1,13 @@
-import BackButton from "./buttons/BackButton";
+import BackButton from "./BackButton";
 import colors from "../dummyData/ColorsArray";
 import { formality } from "../dummyData/formalityArray";
 import category from "../dummyData/categoryArray";
-import SubmitButton from "./buttons/SubmitButton";
 import { SelectMenu, InputField, ColorPicker } from "./FormComponents";
 import { seasons } from "../dummyData/seasonsArray";
 import { sizes } from "../dummyData/sizesArray";
+import Button from "./Button";
 
-export default function ClothingForm({ handleClothingSubmit, newClothing, handleClothesFormChange, actionType }) {
+export default function ClothingForm({ handleClothingSubmit, newClothing, handleClothesFormChange, isSuccess, handleImageChange, image }) {
 
     // Submit button
     const isDisabled = !Object.values(newClothing).every(value => value);
@@ -15,6 +15,11 @@ export default function ClothingForm({ handleClothingSubmit, newClothing, handle
     return (
       <div className="formWrapper">
         <form onSubmit={handleClothingSubmit}>
+
+          <div>
+            <input type="file" onChange={handleImageChange} />
+            {image && <img src={image} alt="Uploaded" className="clothingImage placeholderImage" />}
+          </div>
 
           <SelectMenu name="category" menuState={newClothing.category} inputArray={category} eventHandler={handleClothesFormChange}/>
 
@@ -30,7 +35,7 @@ export default function ClothingForm({ handleClothingSubmit, newClothing, handle
 
           <InputField name="cost" menuState={newClothing.cost} eventHandler={handleClothesFormChange} type="number" placeholder="10€..."/>
 
-          <SubmitButton isDisabled={isDisabled} actionType={actionType} />
+          <Button isDisabled={isDisabled} children="Submit" actionType="submit" isSuccess={isSuccess} />
     
         </form>
 

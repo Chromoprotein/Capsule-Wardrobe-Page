@@ -1,11 +1,18 @@
 import { Link } from "react-router-dom";
+import Button from "./Button";
 
 export default function MainMenu() {
     return (
         <>
-            <Link to={`/generate`}><button className="bigButton idleStyle" name="linkButton">Generate Outfits</button></Link>
-            <Link to={`/submit`}><button type="button" className="bigButton idleStyle" name="linkButton">Add Clothes</button></Link>
-            <Link to={`/outfits`}><button className="bigButton idleStyle" name="linkButton">Saved Outfits</button></Link>
+            <Link to={`/generate`}>
+                <Button children="Generate Outfit" />
+            </Link>
+            <Link to={`/submit`}>
+                <Button children="Add Clothes" />
+            </Link>
+            <Link to={`/outfits`}>
+                <Button children="Saved Outfits" />
+            </Link>
         </>
     );
 };
