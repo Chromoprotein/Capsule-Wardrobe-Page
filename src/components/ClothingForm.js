@@ -7,7 +7,7 @@ import { seasons } from "../dummyData/seasonsArray";
 import { sizes } from "../dummyData/sizesArray";
 import Button from "./Button";
 
-export default function ClothingForm({ handleClothingSubmit, newClothing, handleClothesFormChange, isSuccess, handleImageChange, image }) {
+export default function ClothingForm({ handleClothingSubmit, newClothing, handleClothesFormChange, isSuccess, handleImageChange }) {
 
     // Submit button
     const isDisabled = !Object.values(newClothing).every(value => value);
@@ -17,8 +17,16 @@ export default function ClothingForm({ handleClothingSubmit, newClothing, handle
         <form onSubmit={handleClothingSubmit}>
 
           <div>
-            <input type="file" onChange={handleImageChange} />
-            {image && <img src={image} alt="Uploaded" className="clothingImage placeholderImage" />}
+            <input 
+              type="file" 
+              id="file-upload" 
+              style={{ display: 'none' }} 
+              onChange={handleImageChange} 
+            />
+            <label htmlFor="file-upload" className={newClothing.img ? 'bigButton selectedStyle' : 'bigButton idleStyle'}>
+              Upload Image
+            </label>
+            {newClothing.img && <img src={newClothing.img} alt="Uploaded" className="clothingImage placeholderImage" />}
           </div>
 
           <SelectMenu name="category" menuState={newClothing.category} inputArray={category} eventHandler={handleClothesFormChange}/>
@@ -31,9 +39,9 @@ export default function ClothingForm({ handleClothingSubmit, newClothing, handle
 
           <ColorPicker type="radio" menuState={newClothing.color} colorsArray={colors} eventHandler={handleClothesFormChange} />
 
-          <InputField name="brand" menuState={newClothing.brand} eventHandler={handleClothesFormChange} type="text" placeholder="Brand A..."/>
+          <InputField name="brand" menuState={newClothing.brand} eventHandler={handleClothesFormChange} type="text" placeholder="Brand A"/>
 
-          <InputField name="cost" menuState={newClothing.cost} eventHandler={handleClothesFormChange} type="number" placeholder="10€..."/>
+          <InputField name="cost" menuState={newClothing.cost} eventHandler={handleClothesFormChange} type="number" placeholder="10"/>
 
           <Button isDisabled={isDisabled} children="Submit" actionType="submit" isSuccess={isSuccess} />
     

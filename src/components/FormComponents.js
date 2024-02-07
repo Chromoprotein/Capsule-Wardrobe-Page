@@ -1,13 +1,15 @@
+import capitalize from "../utils/capitalize";
+
 export function SelectMenu({ name, menuState, inputArray, eventHandler }) {
 
     return (
         <select className={menuState ? 'bigButton selectedStyle' : 'bigButton idleStyle'} value={menuState} name={name} onChange={eventHandler}>
         <option value="" disabled selected>
-            {name}
+            {capitalize(name)}
         </option>
         {inputArray.map((formality) => (
             <option key={formality} value={formality}>
-            {formality}
+            {capitalize(formality)}
             </option>
         ))}
         </select>
@@ -18,7 +20,7 @@ export function SelectMenu({ name, menuState, inputArray, eventHandler }) {
 export function InputField({ name, menuState, eventHandler, type, placeholder }) {
     return (
         <div className={menuState ? "bigButton selectedStyle" : "bigButton idleStyle"}>
-            <label>{name} </label>
+            <label>{capitalize(name)} </label>
             <input className="textInputStyle" type={type} name={name} value={menuState} onChange={eventHandler} placeholder={placeholder} />
         </div>
     );

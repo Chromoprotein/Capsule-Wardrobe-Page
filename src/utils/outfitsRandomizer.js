@@ -45,7 +45,7 @@ export const outfitsRandomizer = (clothesForOutfitGeneration) => {
             randomOutfit.push(randomBottom);
         }
         else {
-            errorMessage = "You haven't added enough bottoms to make an outfit.";
+            errorMessage = "You haven't added enough bottoms to make an outfit. Add more clothes or reduce filters.";
         }
 
         // Choose a layering piece if available
@@ -56,7 +56,7 @@ export const outfitsRandomizer = (clothesForOutfitGeneration) => {
 
     }
     else {
-        errorMessage = "You haven't added enough tops or dresses to make an outfit.";
+        errorMessage = "You haven't added enough tops or dresses to make an outfit. Add more clothes or reduce filters.";
     }
     
     return { randomOutfit, errorMessage };

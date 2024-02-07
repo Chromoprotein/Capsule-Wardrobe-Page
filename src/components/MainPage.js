@@ -8,6 +8,7 @@ import PaginationControls from "./PaginationControls.js";
 import logo from "../img/logo.png";
 import MainMenu from "./MainMenu.js";
 import { Link } from "react-router-dom";
+import Message from "./Message.js";
 
 export default function MainPage() {
   
@@ -55,7 +56,7 @@ export default function MainPage() {
             <PaginationControls clothes={mapClothes} />
           </>
         ) : (
-          "No clothes saved. Try reducing filters."
+          <Message children="No clothes available. Add clothes or reduce filters."/>
         )}
       </div>
 

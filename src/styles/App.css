@@ -58,13 +58,28 @@ body {
   text-align: center;
   margin: 20px;
 }
-.message {
+
+/*MODAL*/
+.modalStyle {
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.543);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.messageContent {
   background-color: var(--colorpop);
   color: var(--dark);
-  width:100%;
-  max-width:400px;
-  padding:20px;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
   margin: 20px auto;
+  position:relative; /*to position the close button*/
 }
 
 /*FORM*/
@@ -172,6 +187,17 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .specialButton {
   background-color: #bb86fc4e !important;
+}
+.xButton {
+  position:absolute;
+  top:0;
+  right:0;
+  border: none;
+  background: transparent;
+  color: black;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 /*LOGO*/

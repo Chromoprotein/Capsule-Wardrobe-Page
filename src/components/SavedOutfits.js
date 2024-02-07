@@ -6,12 +6,18 @@ import PaginationControls from "./PaginationControls";
 import { PaginationContext } from "../contexts/PaginationContext";
 import Button from "./Button";
 import { ClothingContext } from "../contexts/ClothingContext";
+import Message from "./Message";
+import resetStateWithDelay from "../utils/resetStateWithDelay";
 
 export default function SavedOutfits() {
 
     // saved outfits
     const { savedOutfits, setSavedOutfits } = useContext(OutfitContext);
+
+    // success state for deleting
     const [isSuccess, setIsSuccess] = useState(false);
+    // success state for wearing
+    const [wearSuccess, setWearSuccess] = useState(false);
 
     // currentItems = function that slices the clothes/outfits array for pagination purposes
     const { currentItems } = useContext(PaginationContext);
@@ -25,9 +31,9 @@ export default function SavedOutfits() {
         setSavedOutfits(updatedOutfits);
 
         setIsSuccess(true);
-        setTimeout(() => {
-            setIsSuccess(false);
-        }, 3000);
+        // Toggles the state after a timeout
+        resetStateWithDelay(setIsSuccess);
+
         setSavedOutfits(updatedOutfits);
     };
 
@@ -42,6 +48,9 @@ export default function SavedOutfits() {
             return clothesPart;
         });
         setClothes(updatedClothes);
+        setWearSuccess(true);
+        // Resets the state after delay
+        resetStateWithDelay(setWearSuccess);
     }
 
     // Display the outfits by matching outfit piece IDs with clothing objects from the clothes array. Returns an array of objects
@@ -72,12 +81,25 @@ export default function SavedOutfits() {
     // Pagination
     const paginatedItems = currentItems(mapOutfits);
 
-    return(
-        <div className="mainContentWrapper">
-            
-            <BackButton/>
+    // Close the message modal
+    const onClose = () => {
+        if(isSuccess) {
+            setIsSuccess(false);
+        }
+        if(wearSuccess) {
+            setWearSuccess(false);
+        }
+    }
 
-            {isSuccess && <div className="message success-animation"><p>Outfit deleted!</p></div>}
+    console.log(isSuccess)
+    return(
+        <>
+        {isSuccess && <Message children="Outfit deleted!" animate={true} onClose={onClose} />}
+        {wearSuccess && <Message children="Great choice! You set the outfit as worn +1 times!" animate={true} onClose={onClose} />}
+        
+        <div className="mainContentWrapper">
+
+            <BackButton/>
             
             {paginatedItems.length > 0 ?
             (
@@ -86,8 +108,9 @@ export default function SavedOutfits() {
                     <PaginationControls clothes={mapOutfits} />
                 </>
             )
-            : <div class="message">No outfits saved</div>}
+            : <Message children="No outfits saved!"/>}
             
         </div>
+        </>
     );
 }

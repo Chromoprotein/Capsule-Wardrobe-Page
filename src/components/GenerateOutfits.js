@@ -7,6 +7,7 @@ import { outfitsRandomizer } from "../utils/outfitsRandomizer";
 import { OutfitContext } from "../contexts/OutfitsContext";
 import BackButton from "./BackButton";
 import Button from "./Button";
+import Message from "./Message";
 
 export default function GenerateOutfits() {
 
@@ -73,7 +74,7 @@ export default function GenerateOutfits() {
             <div className="mainContentWrapper">
                 <div className="clothingCardContainer">
                     {/*Show the outfit or error message as applicable*/}
-                    {outfit.errorMessage.length !== 0 ? <div className="message">{outfit.errorMessage}</div> : mapOutfit}
+                    {outfit.errorMessage.length !== 0 ? <Message children={outfit.errorMessage} /> : mapOutfit}
                 </div>
             </div>
         </div>

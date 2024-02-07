@@ -96,7 +96,7 @@ export default function ClothingFormLogic() {
 
     return (
       <>
-        <ClothingForm newItem={id ? false : true} handleClothingSubmit={id ? handleEdit : handleAdd} newClothing={formState} handleClothesFormChange={handleFormChange} isSuccess={isSuccess} handleImageChange={handleImageChange} image={formState.img} />
+        <ClothingForm handleClothingSubmit={id ? handleEdit : handleAdd} newClothing={formState} handleClothesFormChange={handleFormChange} isSuccess={isSuccess} handleImageChange={handleImageChange} />
 
         <div className="mainContentWrapper">
             {id && <Button children="Delete" eventHandler={handleDelete} actionType="delete" isSuccess={isSuccessDelete} />}
