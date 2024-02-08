@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import ClothingCard from "./ClothingCard.tsx";
-import { ClothingContext } from "../contexts/ClothingContext.js";
-import ClothingFilters from "./ClothingFilters.js";
-import { FilterContext } from "../contexts/FilterContext.js";
+import { ClothingContext } from "../contexts/ClothingContext.tsx";
+import ClothingFilters from "./ClothingFilters.tsx";
+import { FilterContext } from "../contexts/FilterContext.tsx";
 import { PaginationContext } from "../contexts/PaginationContext.js";
 import PaginationControls from "./PaginationControls.js";
 import logo from "../img/logo.png";
 import MainMenu from "./MainMenu.js";
 import { Link } from "react-router-dom";
-import Message from "./Message.js";
+import Message from "./Message.tsx";
 
 export default function MainPage() {
   

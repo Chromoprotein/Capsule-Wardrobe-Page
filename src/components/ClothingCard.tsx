@@ -9,25 +9,8 @@ import socks from '../img/socks.png';
 import leggings from '../img/leggings.png';
 import cardigan from '../img/cardigan.png';
 import { Link } from 'react-router-dom';
-
-type ClothingCategory = 'dress' | 'skirt' | 'shirt' | 'sweater' | 'jacket' | 'pants' | 'tights' | 'socks' | 'leggings' | 'cardigan';
-
-interface ClothingProp {
-  cost: number;
-  wearCount: number;
-  category: ClothingCategory;
-  id: number;
-  brand: string;
-  color: string;
-  season: string;
-  size: string;
-  formality: string;
-  img: string;
-}
-
-interface ClothingCardProps {
-  clothingProp: ClothingProp;
-}
+import { ClothingCardProps } from './interfaces/interfaces';
+import { ClothingCategory } from './interfaces/interfaces';
 
 export default function ClothingCard({ clothingProp }: ClothingCardProps) {
 

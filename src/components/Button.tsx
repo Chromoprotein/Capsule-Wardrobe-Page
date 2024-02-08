@@ -1,4 +1,14 @@
-export default function Button({ isDisabled, children, actionType, eventHandler, isSuccess}) {
+import { ReactNode } from "react";
+
+interface ButtonProps {
+    isDisabled?: boolean;
+    children: ReactNode;
+    actionType?: string,
+    eventHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    isSuccess?: boolean;
+}
+
+export default function Button({ isDisabled, children, actionType, eventHandler, isSuccess}: ButtonProps) {
 
     // Action type can be: submit, delete, or undefined
 

@@ -6,8 +6,9 @@ import { SelectMenu, InputField, ColorPicker } from "./FormComponents";
 import { seasons } from "../dummyData/seasonsArray";
 import { sizes } from "../dummyData/sizesArray";
 import Button from "./Button";
+import { FormProps } from "./interfaces/interfaces";
 
-export default function ClothingForm({ handleClothingSubmit, newClothing, handleClothesFormChange, isSuccess, handleImageChange }) {
+export default function ClothingForm({ handleClothingSubmit, newClothing, handleClothesFormChange, isSuccess, handleImageChange }: FormProps) {
 
     // Submit button
     const isDisabled = !Object.values(newClothing).every(value => value);

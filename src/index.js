@@ -8,7 +8,7 @@ import {
 import GenerateOutfits from './components/GenerateOutfits';
 import SavedOutfits from './components/SavedOutfits';
 import ClothingFormLogic from './components/ClothingFormLogic';
-import { ClothingContextProvider, FilterContextProvider, OutfitContextProvider, PaginationContextProvider } from './contexts/index.js';
+import { ClothingContextProvider, FilterContextProvider, OutfitContextProvider, PaginationContextProvider } from './contexts/index.tsx';
 
 const router = createBrowserRouter([
   {

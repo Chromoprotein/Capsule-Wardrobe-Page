@@ -1,25 +1,52 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, ReactNode } from "react";
 import { PaginationContext } from "./PaginationContext";
 
-export const FilterContext = createContext();
+// Types for our filters and context
+interface FilterState {
+  formality: string;
+  color: string[];
+  season: string;
+}
 
-export const FilterContextProvider = ({ children }) => {
+interface FilterContextType {
+  filters: FilterState;
+  setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
+  handleFiltersChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  resetFilters: () => void;
+  resetButtonState: boolean;
+  setResetButtonState: React.Dispatch<React.SetStateAction<boolean>>;
+  filteredClothes: (clothes: ClothingItem[]) => ClothingItem[];
+}
 
-  const [filters, setFilters] = useState({
+interface ClothingItem {
+  formality: string;
+  color: string;
+  season: string;
+}
+
+export const FilterContext = createContext<FilterContextType | undefined>(undefined);
+
+interface FilterContextProviderProps {
+  children: ReactNode;
+}
+
+export const FilterContextProvider = ({ children }: FilterContextProviderProps) => {
+
+  const [filters, setFilters] = useState<FilterState>({
     formality: "",
     color: [],
     season: "",
   });
 
-  const [resetButtonState, setResetButtonState] = useState(true);
+  const [resetButtonState, setResetButtonState] = useState<boolean>(true);
 
   const { setCurrentPage } = useContext(PaginationContext);
 
     // Event handler for filters
-    const handleFiltersChange = (event) => {
+    const handleFiltersChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, checked } = event.target;
 
-        let newFilters;
+        let newFilters: FilterState;
         if (name === "color") {
             let updatedColors;
             if (checked) {
@@ -36,7 +63,7 @@ export const FilterContextProvider = ({ children }) => {
 
         // empty filters = reset button disabled: true
         // filters are in use = reset button disabled: false
-        const areAllFiltersEmpty = (filtersToCheck) => {
+        const areAllFiltersEmpty = (filtersToCheck: FilterState) => {
             return Object.values(filtersToCheck).every(value => 
                 (Array.isArray(value) ? value.length === 0 : value === "")
             );
@@ -57,7 +84,7 @@ export const FilterContextProvider = ({ children }) => {
     };
 
     // apply the filters to a clothing array
-    const filteredClothes = (clothes) => {
+    const filteredClothes = (clothes: ClothingItem[]) => {
         return clothes.filter(
             (piece) =>
             (filters.formality ? piece.formality === filters.formality : true) &&
@@ -71,4 +98,12 @@ export const FilterContextProvider = ({ children }) => {
             {children}
         </FilterContext.Provider>
     );
+}
+
+export function useFilterContext() {
+  const context = useContext(FilterContext);
+  if (context === undefined) {
+    throw new Error('useFilterContext must be used within a FilterContextProvider');
+  }
+  return context;
 }

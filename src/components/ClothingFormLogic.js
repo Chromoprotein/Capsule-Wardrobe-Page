@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useContext, useState } from 'react';
-import { ClothingContext } from '../contexts/ClothingContext';
+import { ClothingContext } from '../contexts/ClothingContext.tsx';
 import Button from './Button';
 import ClothingForm from './ClothingForm';
 import { PaginationContext } from '../contexts/PaginationContext';

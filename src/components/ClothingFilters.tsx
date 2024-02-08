@@ -1,14 +1,13 @@
 import colors from "../dummyData/ColorsArray";
 import { formality } from "../dummyData/formalityArray";
-import { useContext } from "react";
-import { FilterContext } from "../contexts/FilterContext";
+import { useFilterContext } from "../contexts/FilterContext";
 import { seasons } from "../dummyData/seasonsArray";
 import { ColorPicker, SelectMenu } from "./FormComponents";
 import Button from "./Button";
 
 export default function ClothingFilters() {
     
-    const { filters, handleFiltersChange, resetFilters, resetButtonState } = useContext(FilterContext);
+    const { filters, handleFiltersChange, resetFilters, resetButtonState } = useFilterContext();
 
     return (
         <>
