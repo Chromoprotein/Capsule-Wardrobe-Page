@@ -26,7 +26,7 @@ export default function ClothingForm({ handleClothingSubmit, newClothing, handle
             />
             <label htmlFor="file-upload" className={newClothing.img ? 'bigButton selectedStyle' : 'bigButton idleStyle'}>
               Upload Image
-            </label>
+            </label> 
             {newClothing.img && <img src={newClothing.img} alt="Uploaded" className="clothingImage placeholderImage" />}
           </div>
 

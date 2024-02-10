@@ -1,25 +1,25 @@
-import { ClothingContext } from "../contexts/ClothingContext";
-import { useContext, useState } from "react";
-import { FilterContext } from "../contexts/FilterContext";
+import { useState } from "react";
 import ClothingFilters from "./ClothingFilters";
 import ClothingCard from "./ClothingCard";
 import { outfitsRandomizer } from "../utils/outfitsRandomizer";
-import { OutfitContext } from "../contexts/OutfitsContext";
 import BackButton from "./BackButton";
 import Button from "./Button";
 import Message from "./Message";
+import { useOutfitContext } from "../contexts/OutfitsContext";
+import { useClothingContext } from "../contexts/ClothingContext";
+import { useFilterContext } from "../contexts/FilterContext";
 
 export default function GenerateOutfits() {
 
     // State for randomly generated outfits saved by the user
-    const { savedOutfits, setSavedOutfits } = useContext(OutfitContext);
+    const { savedOutfits, setSavedOutfits } = useOutfitContext();
     const [isSuccess, setIsSuccess] = useState(false);
 
     // State for the all clothing pieces array
-    const { clothes } = useContext(ClothingContext);
+    const { clothes } = useClothingContext();
 
     // Filter function for clothes
-    const { filteredClothes } = useContext(FilterContext);
+    const { filteredClothes } = useFilterContext();
     // Apply the filter on clothes
     const clothesForOutfitGeneration = filteredClothes(clothes);
 
@@ -48,7 +48,7 @@ export default function GenerateOutfits() {
         )
     );
 
-    const saveOutfit = (event) => {
+    const saveOutfit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         const ids = outfit.randomOutfit.map(piece => piece.id);
         setSavedOutfits([...savedOutfits, ids]);
         setIsSuccess(true);
@@ -56,8 +56,8 @@ export default function GenerateOutfits() {
     }
 
     return (
-        <div class="mainPageWrapper">
-            <div class="navbarWrapper">
+        <div className="mainPageWrapper">
+            <div className="navbarWrapper">
 
                 <ClothingFilters />
 

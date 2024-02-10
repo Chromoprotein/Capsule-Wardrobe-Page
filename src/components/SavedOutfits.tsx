@@ -1,18 +1,19 @@
-import { OutfitContext } from "../contexts/OutfitsContext";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import BackButton from "./BackButton";
 import ClothingCard from "./ClothingCard";
 import PaginationControls from "./PaginationControls";
-import { PaginationContext } from "../contexts/PaginationContext";
 import Button from "./Button";
-import { ClothingContext } from "../contexts/ClothingContext";
 import Message from "./Message";
 import resetStateWithDelay from "../utils/resetStateWithDelay";
+import { usePaginationContext } from "../contexts/PaginationContext";
+import { useOutfitContext } from "../contexts/OutfitsContext";
+import { useClothingContext } from "../contexts/ClothingContext";
+import { ClothingProp } from "./interfaces/interfaces";
 
 export default function SavedOutfits() {
 
     // saved outfits
-    const { savedOutfits, setSavedOutfits } = useContext(OutfitContext);
+    const { savedOutfits, setSavedOutfits } = useOutfitContext();
 
     // success state for deleting
     const [isSuccess, setIsSuccess] = useState(false);
@@ -20,13 +21,13 @@ export default function SavedOutfits() {
     const [wearSuccess, setWearSuccess] = useState(false);
 
     // currentItems = function that slices the clothes/outfits array for pagination purposes
-    const { currentItems } = useContext(PaginationContext);
+    const { currentItems } = usePaginationContext();
 
     // Clothing state for updating wear counts
-    const { clothes, setClothes } = useContext(ClothingContext);
+    const { clothes, setClothes } = useClothingContext();
 
     // Delete outfit
-    const handleDelete = (indexToDelete) => {
+    const handleDelete = (indexToDelete: number) => {
         const updatedOutfits = savedOutfits.filter((_, index) => index !== indexToDelete);
         setSavedOutfits(updatedOutfits);
 
@@ -37,11 +38,15 @@ export default function SavedOutfits() {
         setSavedOutfits(updatedOutfits);
     };
 
+    interface OutfitPart {
+        id: string;
+    }
+
     // Increment wear count by mapping the clothes array and checking if the outfit part's ID matches with the clothing's ID.
     // If they match, return the clothing with incremented wearCount. If they don't match, return the unaltered clothing.
-    const handleWear = (outfit) => {
-        const updatedClothes = clothes.map(clothesPart => {
-            const match = outfit.find(outfitPart => clothesPart.id === outfitPart.id);
+    const handleWear = (outfit: OutfitPart[]) => {
+        const updatedClothes = clothes.map((clothesPart: ClothingProp) => {
+            const match = outfit.find((outfitPart) => clothesPart.id === outfitPart.id);
             if (match) {
                 return { ...clothesPart, wearCount: clothesPart.wearCount + 1 };
             }
@@ -57,22 +62,27 @@ export default function SavedOutfits() {
     // savedOutfits = array of arrays
     // outfitArray = a single array
     // outfitPiece = an ID
-    const outfitsById = savedOutfits.map(outfitArray => {
+    const outfitsById: (ClothingProp | undefined)[][] = savedOutfits.map(outfitArray => {
         return outfitArray.map(outfitPiece => {
             return clothes.find(clothingPiece => clothingPiece.id === outfitPiece);
         })
     });
 
-    // Map the outfits
+    // Filter undefined and map outfits
+    // outfitsById is an array of arrays containing clothing objects
     const mapOutfits = outfitsById.map((outfit, index) => (
         <div key={`outfit-${index}`} className="clothingCardContainer outfitContainer">
-            {outfit.map(piece => (
-                <div key={piece.id}>
-                    <ClothingCard clothingProp={piece} />
-                </div>
-            ))}
+            {outfit
+                .filter((piece): piece is ClothingProp => piece !== undefined)
+                .map((piece) => (
+                    <div key={piece.id}>
+                        <ClothingCard clothingProp={piece} />
+                    </div>
+                ))
+            }
             <div>
-                <Button children="+1 Wear" eventHandler={() => handleWear(outfit)}/>
+                <Button children="+1 Wear" eventHandler={() => handleWear(outfit.filter((piece): piece is ClothingProp => piece !== undefined))}/>
+
                 <Button children="Delete" actionType="delete" eventHandler={() => handleDelete(index)}/>
             </div>
         </div>

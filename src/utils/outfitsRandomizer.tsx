@@ -1,18 +1,35 @@
-export const outfitsRandomizer = (clothesForOutfitGeneration) => {
+import { ClothingProp } from "../components/interfaces/interfaces";
+
+type Categories = {
+  [key: string]: string[];
+};
+
+// Define a type for the clothingItems object
+type ClothingItems = {
+  [category: string]: ClothingProp[];
+};
+
+// Define the return type of the outfitsRandomizer function
+type OutfitsRandomizerReturnType = {
+  randomOutfit: ClothingProp[];
+  errorMessage: string;
+};
+
+export const outfitsRandomizer = (clothesForOutfitGeneration: ClothingProp[]): OutfitsRandomizerReturnType => {
 
     let errorMessage = "";
 
     // Function that makes arrays for different categories
-    const filterArray = (array, ...queries) => {
+    const filterArray = (array: ClothingProp[], ...queries: string[]): ClothingProp[] => {
         return array.filter((item) => queries.includes(item.category));
     };
 
     // Generic randomizing function that takes an array and returns an item
-    const randomItem = (arr) => {
+    const randomItem = (arr: ClothingProp[]): ClothingProp => {
         return arr[Math.floor(Math.random() * arr.length)];
     }
 
-    const categories = {
+    const categories: Categories = {
         topsAndDresses: ["shirt", "dress"],
         hosiery: ["leggings", "tights", "socks"],
         bottoms: ["skirt", "pants"],
@@ -22,13 +39,13 @@ export const outfitsRandomizer = (clothesForOutfitGeneration) => {
 
     // Filter the clothesForOutfitGeneration into their respective categories
     // For each key (category), add a property with the category's name to the clothingItems object. The property's value is the filtered array
-    const clothingItems = {};
+    const clothingItems: ClothingItems = {};
     Object.keys(categories).forEach(category => {
         clothingItems[category] = filterArray(clothesForOutfitGeneration, ...categories[category]);
     });
 
     // Save clothing pieces here for the outfit
-    const randomOutfit = [];
+    const randomOutfit: ClothingProp[] = [];
 
     // Choose a random top or a dress
     if(clothingItems.topsAndDresses.length > 0) {

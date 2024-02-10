@@ -1,16 +1,19 @@
-import { useContext } from "react";
-import { PaginationContext } from "../contexts/PaginationContext";
+import { usePaginationContext } from "../contexts/PaginationContext";
 
-export default function PaginationControls({ clothes }) {
+interface ClothingCardProps {
+  clothes: JSX.Element[];
+}
+
+export default function PaginationControls({ clothes }: ClothingCardProps) {
     
-  const { currentPage, setCurrentPage, totalPages } = useContext(PaginationContext);
+  const { currentPage, setCurrentPage, totalPages } = usePaginationContext();
 
   // Calculate the total pages 
   // Takes the filtered and mapped clothes array
   const myTotalPages = totalPages(clothes);
 
   // Go to any page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   // Go to the next page
   const goToNextPage = () => {

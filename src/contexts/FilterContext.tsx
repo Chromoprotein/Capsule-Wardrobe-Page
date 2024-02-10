@@ -1,5 +1,6 @@
 import { createContext, useState, useContext, ReactNode } from "react";
-import { PaginationContext } from "./PaginationContext";
+import { usePaginationContext } from "./PaginationContext";
+import { ClothingProp } from "../components/interfaces/interfaces";
 
 // Types for our filters and context
 interface FilterState {
@@ -10,18 +11,12 @@ interface FilterState {
 
 interface FilterContextType {
   filters: FilterState;
-  setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
-  handleFiltersChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setFilters: (filters: FilterState) => void;
+  handleFiltersChange: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   resetFilters: () => void;
   resetButtonState: boolean;
-  setResetButtonState: React.Dispatch<React.SetStateAction<boolean>>;
-  filteredClothes: (clothes: ClothingItem[]) => ClothingItem[];
-}
-
-interface ClothingItem {
-  formality: string;
-  color: string;
-  season: string;
+  setResetButtonState: (resetButtonState: boolean) => void;
+  filteredClothes: (clothes: ClothingProp[]) => ClothingProp[];
 }
 
 export const FilterContext = createContext<FilterContextType | undefined>(undefined);
@@ -40,14 +35,15 @@ export const FilterContextProvider = ({ children }: FilterContextProviderProps) 
 
   const [resetButtonState, setResetButtonState] = useState<boolean>(true);
 
-  const { setCurrentPage } = useContext(PaginationContext);
+  const { setCurrentPage } = usePaginationContext();
 
     // Event handler for filters
-    const handleFiltersChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value, checked } = event.target;
-
+    const handleFiltersChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = event.target;
         let newFilters: FilterState;
-        if (name === "color") {
+
+        if (event.target instanceof HTMLInputElement && event.target.type === "checkbox") {
+            const { checked } = event.target;
             let updatedColors;
             if (checked) {
                 updatedColors = [...filters.color, value];
@@ -84,7 +80,7 @@ export const FilterContextProvider = ({ children }: FilterContextProviderProps) 
     };
 
     // apply the filters to a clothing array
-    const filteredClothes = (clothes: ClothingItem[]) => {
+    const filteredClothes = (clothes: ClothingProp[]) => {
         return clothes.filter(
             (piece) =>
             (filters.formality ? piece.formality === filters.formality : true) &&

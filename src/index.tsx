@@ -8,7 +8,7 @@ import {
 import GenerateOutfits from './components/GenerateOutfits';
 import SavedOutfits from './components/SavedOutfits';
 import ClothingFormLogic from './components/ClothingFormLogic';
-import { ClothingContextProvider, FilterContextProvider, OutfitContextProvider, PaginationContextProvider } from './contexts/index.tsx';
+import { ClothingContextProvider, FilterContextProvider, OutfitContextProvider, PaginationContextProvider } from './contexts';
 
 const router = createBrowserRouter([
   {
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
   <React.StrictMode>
     <ClothingContextProvider>

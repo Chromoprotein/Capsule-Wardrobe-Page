@@ -1,8 +1,8 @@
-export type ClothingCategory = 'dress' | 'skirt' | 'shirt' | 'sweater' | 'jacket' | 'pants' | 'tights' | 'socks' | 'leggings' | 'cardigan';
+//export type ClothingCategory = 'dress' | 'skirt' | 'shirt' | 'sweater' | 'jacket' | 'pants' | 'tights' | 'socks' | 'leggings' | 'cardigan';
 
 export interface ClothingProp { 
   id: string;
-  category: ClothingCategory;
+  category: string;
   brand: string;
   color: string;
   size: string;
@@ -16,7 +16,7 @@ export interface ClothingProp {
 export interface FormProps {
   handleClothingSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   newClothing: ClothingProp;
-  handleClothesFormChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleClothesFormChange: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   isSuccess: boolean;
   handleImageChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

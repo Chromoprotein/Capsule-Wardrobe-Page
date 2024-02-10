@@ -3,8 +3,8 @@ import { ReactNode } from "react";
 interface ButtonProps {
     isDisabled?: boolean;
     children: ReactNode;
-    actionType?: string,
-    eventHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    actionType?: string;
+    eventHandler?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
     isSuccess?: boolean;
 }
 
@@ -21,7 +21,7 @@ export default function Button({ isDisabled, children, actionType, eventHandler,
     const buttonType = actionType === "submit" ? "submit" : "button";
 
     // Event handler
-    const onClick = eventHandler ? eventHandler : undefined;
+    const onClick = eventHandler && eventHandler;
 
     // Checkmark and animation
     const checkmark = isSuccess && <span className="success-animation"> &#x2714;</span>;

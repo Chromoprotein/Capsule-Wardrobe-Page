@@ -1,29 +1,29 @@
-import { useContext } from "react";
-import ClothingCard from "./ClothingCard.tsx";
-import { ClothingContext } from "../contexts/ClothingContext.tsx";
-import ClothingFilters from "./ClothingFilters.tsx";
-import { FilterContext } from "../contexts/FilterContext.tsx";
-import { PaginationContext } from "../contexts/PaginationContext.js";
-import PaginationControls from "./PaginationControls.js";
+import ClothingCard from "./ClothingCard";
+import ClothingFilters from "./ClothingFilters";
+import PaginationControls from "./PaginationControls";
 import logo from "../img/logo.png";
-import MainMenu from "./MainMenu.js";
+import MainMenu from "./MainMenu";
 import { Link } from "react-router-dom";
-import Message from "./Message.tsx";
+import Message from "./Message";
+import { usePaginationContext } from "../contexts/PaginationContext";
+import { useFilterContext } from "../contexts/FilterContext";
+import { useClothingContext } from "../contexts/ClothingContext";
+import { ClothingProp } from "./interfaces/interfaces";
 
 export default function MainPage() {
   
   // clothes = original clothing array
-  const { clothes } = useContext(ClothingContext);
+  const { clothes } = useClothingContext();
 
   // filteredClothes = function that applies filters on the clothes array
-  const { filteredClothes } = useContext(FilterContext);
+  const { filteredClothes } = useFilterContext();
 
   // currentItems = function that slices the clothes/outfits array for pagination purposes
-  const { currentItems } = useContext(PaginationContext);
+  const { currentItems } = usePaginationContext();
   
   // Apply filters on clothes and map them
-  const mapClothes = filteredClothes(clothes)
-    .map((piece) => (
+  const mapClothes: JSX.Element[] = filteredClothes(clothes)
+    .map((piece: ClothingProp) => (
       <div key={piece.id}>
         <ClothingCard clothingProp={piece} />
       </div>
@@ -31,12 +31,12 @@ export default function MainPage() {
   );
 
   // Pagination
-  const paginatedItems = currentItems(mapClothes);
+  const paginatedItems: JSX.Element[] = currentItems(mapClothes);
 
   return (
-    <div class="mainPageWrapper">
+    <div className="mainPageWrapper">
 
-      <div class="navbarWrapper">
+      <div className="navbarWrapper">
         <Link to="/"><img src={logo} className="logoImage idleStyle" alt="My Capsule Wardrobe"/></Link>
         {/*Navigation buttons for adding clothes and generating outfits*/}
         <MainMenu/>

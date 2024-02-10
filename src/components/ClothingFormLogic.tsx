@@ -1,16 +1,18 @@
 import { useParams } from 'react-router-dom';
-import { useContext, useState } from 'react';
-import { ClothingContext } from '../contexts/ClothingContext.tsx';
+import { useState } from 'react';
 import Button from './Button';
 import ClothingForm from './ClothingForm';
-import { PaginationContext } from '../contexts/PaginationContext';
 import useReturn from '../utils/useReturn';
 import { v4 as uuidv4 } from 'uuid';
+// npm install --save-dev @types/uuid
+import { useClothingContext } from '../contexts/ClothingContext';
+import { usePaginationContext } from '../contexts/PaginationContext';
+import { ClothingProp } from './interfaces/interfaces';
 
 export default function ClothingFormLogic() {
 
     // Context that stores the clothes
-    const { clothes, setClothes } = useContext(ClothingContext);
+    const { clothes, setClothes } = useClothingContext();
 
     // Get the URL id when editing clothes
     const { id } = useParams();
@@ -27,24 +29,26 @@ export default function ClothingFormLogic() {
             cost: 0,
             formality: "",
             img: "",
+            wearCount: 0,
+            id: "",
         }
-    const [formState, setFormState] = useState(individualPiece);
+    const [formState, setFormState] = useState<ClothingProp>(individualPiece as ClothingProp);
 
     // Pagination context
-    const { setCurrentPage } = useContext(PaginationContext);
+    const { setCurrentPage } = usePaginationContext();
     // For the form submission success message
     const [isSuccess, setIsSuccess] = useState(false);
     const [isSuccessDelete, setIsSuccessDelete] = useState(false);
     // Return to front page
     const returnToFrontPage = useReturn();
 
-    const handleFormChange = (event) => {
+    const handleFormChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = event.target;
 
         setFormState((prevState) => ({ ...formState, [name]: value }));
     }
 
-    const handleImageChange = (e) => {
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         // Check if any files were uploaded
         if (e.target.files && e.target.files[0]) {
             // Create a URL for the uploaded file
@@ -54,7 +58,7 @@ export default function ClothingFormLogic() {
         }
     };
 
-    const handleEdit = (event) => {
+    const handleEdit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setIsSuccess(true);
 
@@ -70,7 +74,7 @@ export default function ClothingFormLogic() {
         returnToFrontPage();
     }
 
-    const handleDelete = (event) => {
+    const handleDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
 
         const updatedClothes = clothes.filter(piece => piece.id !== id);
@@ -82,12 +86,12 @@ export default function ClothingFormLogic() {
     };
 
     //Submit action
-    const handleAdd = (event) => {
+    const handleAdd = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const newId = uuidv4();
-        const newClothingObject = {id: newId, wearCount: 0, ...formState};
+        formState.id = uuidv4();
+        const newClothingObject = {...formState};
         
-        setClothes((prevClothes) => ([...clothes, newClothingObject]));
+        setClothes([...clothes, newClothingObject]);
 
         setIsSuccess(true);
 

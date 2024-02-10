@@ -9,7 +9,7 @@ export default function ClothingFilters() {
     
     const { filters, handleFiltersChange, resetFilters, resetButtonState } = useFilterContext();
 
-    return (
+    return ( 
         <>
 
             <ColorPicker type="checkbox" menuState={filters.color} colorsArray={colors} eventHandler={handleFiltersChange} />

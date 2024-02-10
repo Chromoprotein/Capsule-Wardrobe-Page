@@ -1,6 +1,28 @@
 import capitalize from "../utils/capitalize";
 
-export function SelectMenu({ name, menuState, inputArray, eventHandler }) {
+interface SelectMenuType {
+    name: string;
+    menuState: string;
+    inputArray: string[];
+    eventHandler: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+}
+
+interface InputFieldType {
+    name: string;
+    menuState: string | number;
+    eventHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    type: string;
+    placeholder: string;
+}
+
+interface ColorPickerType {
+    type: string;
+    menuState: string | string[];
+    colorsArray: string[];
+    eventHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export function SelectMenu({ name, menuState, inputArray, eventHandler }: SelectMenuType) {
 
     return (
         <select className={menuState ? 'bigButton selectedStyle' : 'bigButton idleStyle'} value={menuState} name={name} onChange={eventHandler}>
@@ -17,7 +39,7 @@ export function SelectMenu({ name, menuState, inputArray, eventHandler }) {
 
 };
 
-export function InputField({ name, menuState, eventHandler, type, placeholder }) {
+export function InputField({ name, menuState, eventHandler, type, placeholder }: InputFieldType) {
     return (
         <div className={menuState ? "bigButton selectedStyle" : "bigButton idleStyle"}>
             <label>{capitalize(name)} </label>
@@ -26,13 +48,13 @@ export function InputField({ name, menuState, eventHandler, type, placeholder })
     );
 }
 
-export function ColorPicker({ type, menuState, colorsArray, eventHandler }) {
+export function ColorPicker({ type, menuState, colorsArray, eventHandler }: ColorPickerType) {
     return (
 
         <div className={menuState.length !== 0 ? 'selectedStyle bigButton checkboxContainer' : 'bigButton idleStyle checkboxContainer'}>
             {colorsArray.map((color) => (
                 <div key={color}>
-                    <label class="formControl">
+                    <label className="formControl">
                         <input
                             type={type}
                             name="color"

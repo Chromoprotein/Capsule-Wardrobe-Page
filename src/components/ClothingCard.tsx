@@ -10,18 +10,17 @@ import leggings from '../img/leggings.png';
 import cardigan from '../img/cardigan.png';
 import { Link } from 'react-router-dom';
 import { ClothingCardProps } from './interfaces/interfaces';
-import { ClothingCategory } from './interfaces/interfaces';
 
 export default function ClothingCard({ clothingProp }: ClothingCardProps) {
 
-  const { cost, wearCount, category, id, brand, color, season, size, formality, img } = clothingProp;
+  const { cost, wearCount, category, id, brand, color, season, size, formality, img } = clothingProp; 
 
   const costPerWear = (cost / wearCount).toFixed(2);
 
   // Record constructs an object shape
   // Keys: an union of string literals (ClothingCategory)
   // Type: type of the values (strings which are the photos)
-  const images: Record<ClothingCategory, string> = {
+  const images: Record<string, string> = {
     dress,
     skirt,
     shirt,

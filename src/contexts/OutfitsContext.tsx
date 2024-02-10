@@ -1,20 +1,16 @@
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState, ReactNode, useContext } from "react";
 import { outfitsArray } from "../dummyData/outfitsArray";
-
 
 interface OutfitsContextType {
   savedOutfits: string[][];
   setSavedOutfits: (outfits: string[][]) => void;
 }
 
-export const OutfitContext = createContext<OutfitsContextType>({
-  savedOutfits: [], // Initial empty array<ClothingContextpe>
-  setSavedOutfits: () => {}, // Dummy function, will be replaced by actual useState function in provider
-});
-
 interface OutfitContextProviderProps {
   children: ReactNode;
 }
+
+export const OutfitContext = createContext<OutfitsContextType | undefined>(undefined);
 
 export const OutfitContextProvider = ({ children }: OutfitContextProviderProps) => {
 
@@ -25,4 +21,15 @@ export const OutfitContextProvider = ({ children }: OutfitContextProviderProps) 
             {children}
         </OutfitContext.Provider>
     );
+}
+
+// Custom hook to consume the context
+export function useOutfitContext(): OutfitsContextType {
+  const context = useContext(OutfitContext);
+  
+  if (context === undefined) {
+    throw new Error('useOutfitContext must be used within a OutfitContextProvider');
+  }
+  
+  return context;
 }
