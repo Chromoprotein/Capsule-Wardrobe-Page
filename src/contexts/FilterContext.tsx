@@ -19,11 +19,11 @@ interface FilterContextType {
   filteredClothes: (clothes: ClothingProp[]) => ClothingProp[];
 }
 
-export const FilterContext = createContext<FilterContextType | undefined>(undefined);
-
 interface FilterContextProviderProps {
   children: ReactNode;
 }
+
+export const FilterContext = createContext<FilterContextType | undefined>(undefined);
 
 export const FilterContextProvider = ({ children }: FilterContextProviderProps) => {
 

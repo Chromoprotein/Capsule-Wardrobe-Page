@@ -1,18 +1,6 @@
 import React, { createContext, useState, ReactNode, useContext } from 'react';
 import clothesArray from '../dummyData/clothesArray';
-
-interface ClothingProp { 
-  id: string;
-  category: string;
-  brand: string;
-  color: string;
-  size: string;
-  season: string;
-  wearCount: number;
-  cost: number;
-  formality: string;
-  img: string;
-}
+import { ClothingProp } from '../components/interfaces/interfaces';
 
 interface ClothingContextType {
   clothes: ClothingProp[];

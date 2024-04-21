@@ -6,7 +6,15 @@ import { SelectMenu, InputField, ColorPicker } from "./FormComponents";
 import { seasons } from "../dummyData/seasonsArray";
 import { sizes } from "../dummyData/sizesArray";
 import Button from "./Button";
-import { FormProps } from "./interfaces/interfaces";
+import { ClothingProp } from "./interfaces/interfaces";
+
+interface FormProps {
+  handleClothingSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  newClothing: ClothingProp;
+  handleClothesFormChange: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+  isSuccess: boolean;
+  handleImageChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
 export default function ClothingForm({ handleClothingSubmit, newClothing, handleClothesFormChange, isSuccess, handleImageChange }: FormProps) {
 

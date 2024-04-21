@@ -9,7 +9,11 @@ import socks from '../img/socks.png';
 import leggings from '../img/leggings.png';
 import cardigan from '../img/cardigan.png';
 import { Link } from 'react-router-dom';
-import { ClothingCardProps } from './interfaces/interfaces';
+import { ClothingProp } from './interfaces/interfaces';
+
+interface ClothingCardProps {
+  clothingProp: ClothingProp;
+}
 
 export default function ClothingCard({ clothingProp }: ClothingCardProps) {
 
